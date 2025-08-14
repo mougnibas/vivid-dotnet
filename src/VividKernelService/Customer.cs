@@ -27,7 +27,7 @@ public struct Customer : IEquatable<Customer>
     public string Secret { get; set; }
 
     /// <inheritdoc/>
-    bool IEquatable<Customer>.Equals(Customer other)
+    public bool Equals(Customer other)
     {
         return Id == other.Id && Secret == other.Secret;
     }

@@ -30,7 +30,7 @@ Install workspace recommanded extensions.
 dotnet build
 ```
 
-## Test
+## Test and coverage
 
 ```bash
 dotnet test

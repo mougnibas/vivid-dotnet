@@ -11,3 +11,4 @@
 # .NET stuff
 bin/
 obj/
+TestResults/
