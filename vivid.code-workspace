@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	"extensions": {
+		"recommendations": [
+			"ms-dotnettools.csdevkit",
+			"vscode-icons-team.vscode-icons",
+			"alexcodercorp.comments",
+		]
+  },
+	"settings": {},
+}
