@@ -25,12 +25,13 @@ public sealed class DataAccessServiceInDatabaseTest
     [TestInitialize]
     public void SetUp()
     {
-        // Use an in-memory database for testing.
+        // Setup a DB Context in-memory for testing.
         DbContextOptions<VividDbContext> options = new DbContextOptionsBuilder<VividDbContext>()
             .UseInMemoryDatabase(databaseName: "KernelDb")
             .Options;
-
         dbContext = new VividDbContext(options);
+
+        // Reference the service with the DbContext.
         service = new DataAccessServiceInDatabase(dbContext);
 
         // Add a few customers.
