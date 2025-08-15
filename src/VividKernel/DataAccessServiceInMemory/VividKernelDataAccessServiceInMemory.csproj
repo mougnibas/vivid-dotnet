@@ -8,11 +8,10 @@
 
   <!-- Private dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\VividKernelService\VividKernelService.csproj" />
-    <ProjectReference Include="..\VividKernelDataAccessService\VividKernelDataAccessService.csproj" />
+    <ProjectReference Include="..\DataAccessService\VividKernelDataAccessService.csproj" />
   </ItemGroup>
 
-  <!-- Code style -->
+  <!-- Code style-->
   <PropertyGroup>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>

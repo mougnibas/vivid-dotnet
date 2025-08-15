@@ -1,15 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Base properties -->
-  <ItemGroup>
-    <ProjectReference Include="..\VividKernelService\VividKernelService.csproj" />
-  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <!-- Code style-->
+  <!-- Private dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\Service\VividKernelService.csproj" />
+    <ProjectReference Include="..\DataAccessService\VividKernelDataAccessService.csproj" />
+  </ItemGroup>
+
+  <!-- Code style -->
   <PropertyGroup>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>

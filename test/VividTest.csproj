@@ -8,9 +8,10 @@
 
   <!-- Private dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\src\VividKernelService\VividKernelService.csproj" />
-    <ProjectReference Include="..\src\VividKernelServiceImpl\VividKernelServiceImpl.csproj" />
-    <ProjectReference Include="..\src\VividKernelDataAccessServiceInMemory\VividKernelDataAccessServiceInMemory.csproj" />
+    <ProjectReference Include="..\src\VividKernel\DataAccessService\VividKernelDataAccessService.csproj" />
+    <ProjectReference Include="..\src\VividKernel\DataAccessServiceInMemory\VividKernelDataAccessServiceInMemory.csproj" />
+    <ProjectReference Include="..\src\VividKernel\Service\VividKernelService.csproj" />
+    <ProjectReference Include="..\src\VividKernel\ServiceCore\VividKernelServiceCore.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->

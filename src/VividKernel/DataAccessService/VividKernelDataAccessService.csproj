@@ -1,13 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Base properties -->
-  <ItemGroup>
-    <ProjectReference Include="..\VividKernelDataAccessService\VividKernelDataAccessService.csproj" />
-  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <!-- Private dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\Service\VividKernelService.csproj" />
+  </ItemGroup>
 
   <!-- Code style-->
   <PropertyGroup>
