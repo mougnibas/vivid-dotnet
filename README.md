@@ -42,7 +42,9 @@ or
 
 `Terminal / Run Task ... / test`
 
-HTML report is located in test/<project>Test/TestResults/
+or
+
+`Left bar / Testing / Run Tests with Coverage`
 
 ## CLI
 
