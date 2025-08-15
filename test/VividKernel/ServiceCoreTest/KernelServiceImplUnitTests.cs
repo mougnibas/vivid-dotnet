@@ -10,7 +10,7 @@ using VividKernelServiceImpl;
 using VividKernelDataAccessService;
 using VividKernelDataAccessServiceInMemory;
 
-namespace VividKernelTest.Impl;
+namespace VividTest.VividKernel.ServiceCoreTest;
 
 /// <summary>
 /// Unit tests of ``KernelServiceImpl`` class.

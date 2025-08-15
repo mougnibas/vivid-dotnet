@@ -6,10 +6,9 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VividKernelService.Model;
-using VividKernelServiceImpl;
 using VividKernelDataAccessServiceInMemory;
 
-namespace VividKernelTest.Impl;
+namespace VividTest.VividKernel.DataAccessServiceInMemoryTest;
 
 /// <summary>
 /// Unit tests of ``KernelDataAccessServiceServiceInMemory`` class.

@@ -8,7 +8,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VividKernelService.Model;
 
-namespace VividKernelTest.Service;
+namespace VividTest.VividKernel.ServiceTest.Model;
 
 /// <summary>
 /// Unit tests of ``Customer`` struct.
