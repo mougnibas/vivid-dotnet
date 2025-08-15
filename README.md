@@ -30,13 +30,29 @@ Open `vivid.code-workspace` with Visual Studio Code.
 
 Install workspace recommanded extensions.
 
-## Build
+### Build
+
+`Terminal / Run Task ... / build`
+
+or
+
+`Terminal / Run Build Task ...`
+
+### Test and coverage
+
+`Terminal / Run Task ... / test`
+
+HTML report is located in test/<project>Test/TestResults/
+
+## CLI
+
+### Build
 
 ```bash
 dotnet build
 ```
 
-## Test and coverage
+### Test and coverage
 
 ```bash
 dotnet test
