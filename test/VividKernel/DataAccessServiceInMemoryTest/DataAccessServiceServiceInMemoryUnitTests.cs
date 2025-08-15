@@ -41,21 +41,6 @@ public sealed class KernelDataAccessServiceServiceInMemoryUnitTests
     }
 
     [TestMethod]
-    public void CreateNewCustomerShouldReturnAnotherCustomer()
-    {
-        // Arrange.
-        int numberOfCustomersBefore = service.GetCustomers().Length;
-        int expected = numberOfCustomersBefore + 1;
-        service.CreateNewCustomer();
-
-        // Act.
-        int actual = service.GetCustomers().Length;
-
-        // Assert.
-        Assert.AreEqual(expected, actual);
-    }
-
-    [TestMethod]
     public void GetCustomerByIdWithMyIdShouldReturnThisCustomer()
     {
         // Arrange.

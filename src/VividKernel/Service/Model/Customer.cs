@@ -24,6 +24,7 @@ public struct Customer : IEquatable<Customer>
     /// Secret of the customer.
     /// </summary>
     public string Secret { get; set; }
+
     /// <inheritdoc/>
     public bool Equals(Customer other)
     {

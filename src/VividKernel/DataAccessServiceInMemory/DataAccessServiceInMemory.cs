@@ -34,21 +34,6 @@ namespace VividKernelDataAccessServiceInMemory
         }
 
         /// <inheritdoc/>
-        public Customer CreateNewCustomer()
-        {
-            // Create a new customer.
-            string customerId = Guid.NewGuid().ToString();
-            string customerSecret = Guid.NewGuid().ToString();
-            var customer = new Customer { Id = customerId, Secret = customerSecret };
-
-            // Add the new customer to the list.
-            _customers.Add(customer.Id, customer);
-
-            // Return the new customer.
-            return customer;
-        }
-
-        /// <inheritdoc/>
         public Customer? GetCustomer(string id)
         {
             // Check if the customer exists in the dictionary.
