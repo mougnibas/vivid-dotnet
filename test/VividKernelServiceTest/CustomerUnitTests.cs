@@ -78,6 +78,21 @@ public sealed class CustomerUnitTests
         Assert.IsFalse(actual);
     }
 
+    [TestMethod]
+    public void ComparingCustomerAndAnotherCustomerCastedAsObjectShouldReturnTrue()
+    {
+        // Arrange.
+        Customer customerOne = new Customer { Id = "my-id", Secret = "my-secret" };
+        Customer customerTwo = new Customer { Id = "my-id", Secret = "my-secret" };
+        object anotherCustomer = customerTwo;
+
+        // Act.
+        bool actual = customerOne.Equals(anotherCustomer);
+
+        // Assert.
+        Assert.IsTrue(actual);
+    }
+
     [DataTestMethod]
     [DataRow("", "", "", "")]
     [DataRow("my-awesome-id", "my-awesome-secret", "my-awesome-id", "my-awesome-secret")]

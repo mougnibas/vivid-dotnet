@@ -18,6 +18,12 @@ TODO
 
 (Visual Studio Code download page)[https://code.visualstudio.com/download]
 
+### Report Generator
+
+```bash
+dotnet tool install -g dotnet-reportgenerator-globaltool
+```
+
 ##  VS Code
 
 Open `vivid.code-workspace` with Visual Studio Code.
@@ -34,4 +40,5 @@ dotnet build
 
 ```bash
 dotnet test
+reportgenerator -reports:TestResults/coverage.cobertura.xml -reportTypes:HtmlInline -targetdir:TestResults/
 ```
