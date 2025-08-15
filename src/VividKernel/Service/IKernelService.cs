@@ -6,9 +6,7 @@
 // Everyone is permitted to copy and distribute verbatim copies
 // of this license document, but changing it is not allowed.
 
-using VividKernelService.Model;
-
-namespace VividKernelService.Service
+namespace Vivid.Kernel.Service
 {
 
     public interface IKernelService

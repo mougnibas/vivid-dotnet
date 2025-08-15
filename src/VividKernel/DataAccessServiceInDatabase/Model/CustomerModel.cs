@@ -8,7 +8,7 @@
 using System;
 using System.Globalization;
 
-namespace VividKernelService.Model;
+namespace Vivid.Kernel.DataAccessService.InDatabase.Model;
 
 /// <summary>
 /// A representation of a customer (Entity Framework Core model).

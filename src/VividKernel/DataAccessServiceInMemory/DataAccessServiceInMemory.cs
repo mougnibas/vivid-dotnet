@@ -9,11 +9,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VividKernelService.Model;
-using VividKernelService.Service;
-using VividKernelDataAccessService;
+using Vivid.Kernel.DataAccessService;
+using Vivid.Kernel.Service;
 
-namespace VividKernelDataAccessServiceInMemory
+namespace Vivid.Kernel.DataAccessService.InMemory
 {
     /// <summary>
     /// Data access service in memory implementation.

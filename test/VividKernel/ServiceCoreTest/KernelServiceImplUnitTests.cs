@@ -5,9 +5,9 @@
 // of this license document, but changing it is not allowed.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VividKernelService.Model;
-using VividKernelDataAccessServiceInMemory;
-using VividKernelServiceCore;
+using Vivid.Kernel.DataAccessService.InMemory;
+using Vivid.Kernel.Service;
+using Vivid.Kernel.Service.Core;
 
 namespace VividTest.VividKernel.ServiceCoreTest;
 

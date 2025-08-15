@@ -7,11 +7,11 @@
 // of this license document, but changing it is not allowed.
 
 using System.Linq;
-using VividKernelService.Model;
-using VividKernelDataAccessService;
 using System.Collections.Generic;
+using Vivid.Kernel.Service;
+using Vivid.Kernel.DataAccessService.InDatabase.Model;
 
-namespace VividKernelDataAccessServiceInDatabase
+namespace Vivid.Kernel.DataAccessService.InDatabase
 {
     /// <summary>
     /// Data access service backed by a database implementation.

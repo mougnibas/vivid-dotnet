@@ -8,7 +8,7 @@
 using System;
 using System.Globalization;
 
-namespace VividKernelService.Model;
+namespace Vivid.Kernel.Service;
 
 /// <summary>
 /// A representation of a customer.

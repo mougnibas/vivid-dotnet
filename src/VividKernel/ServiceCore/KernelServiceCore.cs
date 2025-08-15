@@ -8,11 +8,9 @@
 
 using System;
 using System.Collections.Generic;
-using VividKernelService.Model;
-using VividKernelService.Service;
-using VividKernelDataAccessService;
+using Vivid.Kernel.DataAccessService;
 
-namespace VividKernelServiceCore
+namespace Vivid.Kernel.Service.Core
 {
     /// <summary>
     /// Kernel service implementation.

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using VividKernelService.Model;
+using Vivid.Kernel.DataAccessService.InDatabase.Model;
 
-namespace VividKernelDataAccessServiceInDatabase
+namespace Vivid.Kernel.DataAccessService.InDatabase
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="VividDbContext"/> class.   

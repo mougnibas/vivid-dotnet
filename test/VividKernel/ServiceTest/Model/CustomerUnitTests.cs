@@ -6,7 +6,7 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VividKernelService.Model;
+using Vivid.Kernel.Service;
 
 namespace VividTest.VividKernel.ServiceTest.Model;
 
