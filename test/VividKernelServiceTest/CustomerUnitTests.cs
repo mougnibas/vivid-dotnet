@@ -51,7 +51,7 @@ public sealed class CustomerUnitTests
     [DataTestMethod]
     [DataRow("", "", "", "")]
     [DataRow("my-awesome-id", "my-awesome-secret", "my-awesome-id", "my-awesome-secret")]
-    public void ThoseAreEquals(string id1, string secret1, string id2, string secret2)
+    public void CustomersWithSameFieldsAreEqual(string id1, string secret1, string id2, string secret2)
     {
         // Arrange.
         Customer customerOne = new Customer { Id = id1, Secret = secret1 };
@@ -96,7 +96,7 @@ public sealed class CustomerUnitTests
     [DataTestMethod]
     [DataRow("", "", "", "")]
     [DataRow("my-awesome-id", "my-awesome-secret", "my-awesome-id", "my-awesome-secret")]
-    public void ThoseAreOperatorEquals(string id1, string secret1, string id2, string secret2)
+    public void OperatorEqualsReturnsTrueForEqualCustomers(string id1, string secret1, string id2, string secret2)
     {
         // Arrange.
         Customer customerOne = new Customer { Id = id1, Secret = secret1 };
@@ -112,7 +112,7 @@ public sealed class CustomerUnitTests
     [DataTestMethod]
     [DataRow("a", "c", "b", "d")]
     [DataRow("my-awesome-id-1", "my-awesome-secret-1", "my-awesome-id-2", "my-awesome-secret-2")]
-    public void ThoseAreNotEquals(string id1, string secret1, string id2, string secret2)
+    public void CustomersWithDifferentFieldsAreNotEqual(string id1, string secret1, string id2, string secret2)
     {
         // Arrange.
         Customer customerOne = new Customer { Id = id1, Secret = secret1 };
@@ -128,7 +128,7 @@ public sealed class CustomerUnitTests
     [DataTestMethod]
     [DataRow("a", "c", "b", "d")]
     [DataRow("my-awesome-id-1", "my-awesome-secret-1", "my-awesome-id-2", "my-awesome-secret-2")]
-    public void ThoseAreNotOperatorEquals(string id1, string secret1, string id2, string secret2)
+    public void OperatorNotEqualsReturnsTrueForDifferentCustomers(string id1, string secret1, string id2, string secret2)
     {
         // Arrange.
         Customer customerOne = new Customer { Id = id1, Secret = secret1 };
@@ -156,9 +156,9 @@ public sealed class CustomerUnitTests
     }
 
     [TestMethod]
-    public void GetHashCodeShouldReturnHashCodeBasedOnToString()
+    public void GetHashCodeShouldReturnHashCodeBasedOnFields()
     {
-        // Arrange.
+        // Arrange: hash code is based on the Id and Secret fields.
         Customer customer = new Customer { Id = "my-id", Secret = "my-secret" };
         int expected = HashCode.Combine("my-id", "my-secret");
 
