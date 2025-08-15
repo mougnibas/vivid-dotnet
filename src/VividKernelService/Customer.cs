@@ -15,18 +15,15 @@ namespace VividKernelService;
 /// </summary>
 public struct Customer : IEquatable<Customer>
 {
-    /// /// <summary>
+    /// <summary>
     /// Unique identifier of the customer.
     /// </summary>
-    /// <returns>Unique identifier of the customer.</returns>
     public string Id { get; set; }
 
     /// <summary>
     /// Secret of the customer.
     /// </summary>
-    /// <returns>Secret of the customer.</returns>
     public string Secret { get; set; }
-
     /// <inheritdoc/>
     public bool Equals(Customer other)
     {
