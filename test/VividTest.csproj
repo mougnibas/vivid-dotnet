@@ -8,7 +8,8 @@
 
   <!-- Private dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\..\src\VividKernelServiceImpl\VividKernelServiceImpl.csproj" />
+    <ProjectReference Include="..\src\VividKernelService\VividKernelService.csproj" />
+    <ProjectReference Include="..\src\VividKernelServiceImpl\VividKernelServiceImpl.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->

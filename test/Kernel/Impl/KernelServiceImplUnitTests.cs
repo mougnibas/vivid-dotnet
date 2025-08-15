@@ -8,8 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VividKernelService.Model;
 using VividKernelServiceImpl;
 
-
-namespace VividKernelServiceImplTest;
+namespace VividKernelTest.Impl;
 
 /// <summary>
 /// Unit tests of ``KernelServiceImpl`` class.
