@@ -9,6 +9,7 @@
 			"ms-dotnettools.csdevkit",
 			"vscode-icons-team.vscode-icons",
 			"alexcodercorp.comments",
+			"humao.rest-client",
 		]
   },
 	"settings": {},
