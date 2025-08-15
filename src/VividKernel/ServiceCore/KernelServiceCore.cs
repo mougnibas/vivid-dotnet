@@ -12,13 +12,13 @@ using VividKernelService.Model;
 using VividKernelService.Service;
 using VividKernelDataAccessService;
 
-namespace VividKernelServiceImpl
+namespace VividKernelServiceCore
 {
     /// <summary>
     /// Kernel service implementation.
     /// </summary>
     /// <param name="dataAccessService">Reference to a data access service.</param>
-    public class KernelService(IDataAccessService dataAccessService) : IKernelService
+    public class KernelServiceCore(IDataAccessService dataAccessService) : IKernelService
     {
         /// <inheritdoc/>
         public void AddCustomer(Customer customer)

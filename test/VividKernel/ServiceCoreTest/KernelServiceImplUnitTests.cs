@@ -6,9 +6,8 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VividKernelService.Model;
-using VividKernelServiceImpl;
-using VividKernelDataAccessService;
 using VividKernelDataAccessServiceInMemory;
+using VividKernelServiceCore;
 
 namespace VividTest.VividKernel.ServiceCoreTest;
 
@@ -18,7 +17,7 @@ namespace VividTest.VividKernel.ServiceCoreTest;
 [TestClass]
 public sealed class KernelServiceImplUnitTests
 {
-    private KernelService service = new KernelService(new DataAccessServiceInMemory());
+    private KernelServiceCore service = new KernelServiceCore(new DataAccessServiceInMemory());
 
     [TestInitialize]
     public void SetUp()
