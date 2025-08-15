@@ -4,6 +4,8 @@
 // Everyone is permitted to copy and distribute verbatim copies
 // of this license document, but changing it is not allowed.
 
+using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vivid.Kernel.DataAccessService;
 using Vivid.Kernel.DataAccessService.InMemory;
@@ -68,10 +70,10 @@ public sealed class CustomerControllerUnitTest
     public void SendGetToCustomerWithUnknownIdShouldReturn404()
     {
         // Arrange.
-        Customer? expected = null;
+        ActionResult<Customer> expected = new NotFoundResult();
 
         // Act.
-        Customer? actual = _controller?.GetCustomer("my-id-not-found").Value;
+        ActionResult<Customer> actual = _controller?.GetCustomer("my-id-not-found").Result;
 
         // Assert.
         Assert.AreEqual(expected, actual);

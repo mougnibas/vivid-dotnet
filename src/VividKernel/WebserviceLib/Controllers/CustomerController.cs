@@ -22,7 +22,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         Customer? customerAdded = kernelService.GetCustomer(customer.Id);
 
         // Return the created customer.
-        return Ok(customerAdded);
+        return customerAdded;
     }
 
     [HttpPost]
@@ -33,7 +33,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         Customer customer = kernelService.CreateNewCustomer();
 
         // Return the new customer.
-        return Ok(customer);
+        return customer;
     }
 
     [HttpGet]
@@ -51,7 +51,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         }
 
         // Return the customer.
-        return Ok(customer);
+        return customer;
     }
 
     [HttpGet]
@@ -62,6 +62,6 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         Customer[] customers = kernelService.GetCustomers();
 
         // Return the list of customers.
-        return Ok(customers);
+        return customers;
     }
 }   
