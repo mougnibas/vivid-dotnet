@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace VividKernelDataAccessServiceInDatabase
 {
     /// <summary>
-    /// Data access service in memory implementation.
+    /// Data access service backed by a database implementation.
     /// </summary>
     public class DataAccessServiceInDatabase(VividDbContext dbContext) : IDataAccessService
     {
@@ -58,7 +58,7 @@ namespace VividKernelDataAccessServiceInDatabase
         public Customer[] GetCustomers()
         {
             // Get the customer models.
-            CustomerModel[] customersModel = dbContext.Customers.ToList().ToArray();
+            CustomerModel[] customersModel = dbContext.Customers.ToArray();
 
             // Convert the CustomerModels to Customers.
             List<Customer> customersList = new List<Customer>(customersModel.Length);

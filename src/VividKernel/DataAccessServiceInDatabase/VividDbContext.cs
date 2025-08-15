@@ -3,13 +3,15 @@ using VividKernelService.Model;
 
 namespace VividKernelDataAccessServiceInDatabase
 {
-    public class VividDbContext : DbContext
+    /// <summary>
+    /// Initializes a new instance of the <see cref="VividDbContext"/> class.   
+    /// </summary>
+    /// <param name="options">The options.</param>
+    public class VividDbContext(DbContextOptions<VividDbContext> options) : DbContext(options)
     {
-        public VividDbContext(DbContextOptions<VividDbContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<CustomerModel> Customers { get; set; } = null!;
+        /// <summary>
+        /// Gets or sets the Customers table, which represents the <see cref="CustomerModel"/> entity.
+        /// </summary>
+        public DbSet<CustomerModel> Customers { get; set; }
     }
 }
