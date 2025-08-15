@@ -20,6 +20,19 @@ namespace VividKernelServiceCore
     /// <param name="dataAccessService">Reference to a data access service.</param>
     public class KernelServiceCore(IDataAccessService dataAccessService) : IKernelService
     {
+        /// <summary>
+        /// Generates a secure random secret.
+        /// </summary>
+        /// <param name="length">The length of the secret.</param>
+        /// <returns>A secure random secret.</returns>
+        private static string GenerateSecureSecret(int length = 32)
+        {
+            using var rng = System.Security.Cryptography.RandomNumberGenerator.Create();
+            var bytes = new byte[length];
+            rng.GetBytes(bytes);
+            return Convert.ToBase64String(bytes);
+        }
+       
         /// <inheritdoc/>
         public void AddCustomer(Customer customer)
         {
@@ -32,7 +45,7 @@ namespace VividKernelServiceCore
         {
             // Create a new customer.
             string customerId = Guid.NewGuid().ToString();
-            string customerSecret = GenerateSecureSecret(32);
+            string customerSecret = GenerateSecureSecret();
             var customer = new Customer { Id = customerId, Secret = customerSecret };
 
             // Add the new customer to the data.
@@ -40,16 +53,6 @@ namespace VividKernelServiceCore
 
             // Return the new customer.
             return customer;
-        }
-
-        private static string GenerateSecureSecret(int length)
-        {
-            using (var rng = System.Security.Cryptography.RandomNumberGenerator.Create())
-            {
-                var bytes = new byte[length];
-                rng.GetBytes(bytes);
-                return Convert.ToBase64String(bytes);
-            }
         }
 
         /// <inheritdoc/>
