@@ -1,6 +1,0 @@
-@WebserviceLib_HostAddress = http://localhost:5190
-
-GET {{WebserviceLib_HostAddress}}/customer
-Accept: application/json
-
-###

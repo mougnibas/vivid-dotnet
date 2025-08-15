@@ -1,0 +1,41 @@
+@WebserviceLib_HostAddress = http://localhost:5190
+
+POST {{WebserviceLib_HostAddress}}/customer
+Content-Type: application/json
+
+{
+    "id": "my-id",
+    "secret": "my-secret"
+}
+
+###
+
+POST {{WebserviceLib_HostAddress}}/customer
+Content-Type: application/json
+
+{
+    "id": "my-id-2",
+    "secret": "my-secret-2"
+}
+
+###
+
+POST {{WebserviceLib_HostAddress}}/customer/auto
+Content-Type: application/json
+
+###
+
+GET {{WebserviceLib_HostAddress}}/customer/my-id
+Accept: application/json
+
+###
+
+GET {{WebserviceLib_HostAddress}}/customer/my-id-2
+Accept: application/json
+
+###
+
+GET {{WebserviceLib_HostAddress}}/customer
+Accept: application/json
+
+###

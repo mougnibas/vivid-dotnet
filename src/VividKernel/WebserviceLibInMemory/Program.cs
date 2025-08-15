@@ -6,8 +6,9 @@ using Vivid.Kernel.DataAccessService;
 using Vivid.Kernel.DataAccessService.InMemory;
 using Vivid.Kernel.Service;
 using Vivid.Kernel.Service.Core;
+using Vivid.Kernel.WebserviceLib;
 
-namespace Vivid.Kernel.WebserviceLib;
+namespace Vivid.Kernel.WebserviceLib.InMemory;
 
 /// <summary>
 /// The entry point for the application.
