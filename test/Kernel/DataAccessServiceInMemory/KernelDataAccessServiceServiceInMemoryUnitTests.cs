@@ -7,18 +7,17 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VividKernelService.Model;
 using VividKernelServiceImpl;
-using VividKernelDataAccessService;
 using VividKernelDataAccessServiceInMemory;
 
 namespace VividKernelTest.Impl;
 
 /// <summary>
-/// Unit tests of ``KernelServiceImpl`` class.
+/// Unit tests of ``KernelDataAccessServiceServiceInMemory`` class.
 /// </summary>
 [TestClass]
-public sealed class KernelServiceImplUnitTests
+public sealed class KernelDataAccessServiceServiceInMemoryUnitTests
 {
-    private KernelService service = new KernelService(new DataAccessServiceInMemory());
+    private DataAccessServiceInMemory service = new DataAccessServiceInMemory();
 
     [TestInitialize]
     public void SetUp()

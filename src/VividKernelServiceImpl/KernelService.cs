@@ -10,25 +10,21 @@ using System;
 using System.Collections.Generic;
 using VividKernelService.Model;
 using VividKernelService.Service;
+using VividKernelDataAccessService;
 
 namespace VividKernelServiceImpl
 {
     /// <summary>
     /// Kernel service implementation.
     /// </summary>
-    public class KernelService : IKernelService
+    /// <param name="dataAccessService">Reference to a data access service.</param>
+    public class KernelService(IDataAccessService dataAccessService) : IKernelService
     {
-        /// <summary>
-        /// Dictionary of customers, in memory.
-        /// </summary>
-        /// <returns></returns>
-        private readonly Dictionary<string, Customer> _customers = [];
-
         /// <inheritdoc/>
         public void AddCustomer(Customer customer)
         {
             // Add a new customer to the list.
-            _customers.Add(customer.Id, customer);
+            dataAccessService.AddCustomer(customer);
         }
 
         /// <inheritdoc/>
@@ -39,8 +35,8 @@ namespace VividKernelServiceImpl
             string customerSecret = Guid.NewGuid().ToString();
             var customer = new Customer { Id = customerId, Secret = customerSecret };
 
-            // Add the new customer to the list.
-            _customers.Add(customer.Id, customer);
+            // Add the new customer to the data.
+            dataAccessService.AddCustomer(customer);
 
             // Return the new customer.
             return customer;
@@ -49,16 +45,14 @@ namespace VividKernelServiceImpl
         /// <inheritdoc/>
         public Customer? GetCustomer(string id)
         {
-            // Check if the customer exists in the dictionary.
-            // If it exists, return the customer; otherwise, return null.
-            return _customers.TryGetValue(id, out Customer value) ? value : null;
+            return dataAccessService.GetCustomer(id);
         }
 
         /// <inheritdoc/>
         public Customer[] GetCustomers()
         {
             // Get the customers.
-            Customer[] customers = new List<Customer>(_customers.Values).ToArray();
+            Customer[] customers = dataAccessService.GetCustomers();
 
             // Return the customers.
             return customers;

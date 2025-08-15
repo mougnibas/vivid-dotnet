@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\src\VividKernelService\VividKernelService.csproj" />
     <ProjectReference Include="..\src\VividKernelServiceImpl\VividKernelServiceImpl.csproj" />
+    <ProjectReference Include="..\src\VividKernelDataAccessServiceInMemory\VividKernelDataAccessServiceInMemory.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->
