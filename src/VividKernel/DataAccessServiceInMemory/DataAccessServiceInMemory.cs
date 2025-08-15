@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using VividKernelService.Model;
 using VividKernelService.Service;
 using VividKernelDataAccessService;
@@ -29,7 +30,7 @@ namespace VividKernelDataAccessServiceInMemory
         public void AddCustomer(Customer customer)
         {
             // Add a new customer to the list.
-            _customers.Add(customer.Id, customer);
+            _customers[customer.Id] = customer;
         }
 
         /// <inheritdoc/>
@@ -59,7 +60,7 @@ namespace VividKernelDataAccessServiceInMemory
         public Customer[] GetCustomers()
         {
             // Get the customers.
-            Customer[] customers = new List<Customer>(_customers.Values).ToArray();
+            Customer[] customers = _customers.Values.ToArray();
 
             // Return the customers.
             return customers;

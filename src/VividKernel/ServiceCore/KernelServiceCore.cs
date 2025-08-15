@@ -32,7 +32,7 @@ namespace VividKernelServiceCore
         {
             // Create a new customer.
             string customerId = Guid.NewGuid().ToString();
-            string customerSecret = Guid.NewGuid().ToString();
+            string customerSecret = GenerateSecureSecret(32);
             var customer = new Customer { Id = customerId, Secret = customerSecret };
 
             // Add the new customer to the data.
@@ -40,6 +40,16 @@ namespace VividKernelServiceCore
 
             // Return the new customer.
             return customer;
+        }
+
+        private static string GenerateSecureSecret(int length)
+        {
+            using (var rng = System.Security.Cryptography.RandomNumberGenerator.Create())
+            {
+                var bytes = new byte[length];
+                rng.GetBytes(bytes);
+                return Convert.ToBase64String(bytes);
+            }
         }
 
         /// <inheritdoc/>

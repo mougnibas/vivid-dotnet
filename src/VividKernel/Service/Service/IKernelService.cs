@@ -10,6 +10,7 @@ using VividKernelService.Model;
 
 namespace VividKernelService.Service
 {
+
     public interface IKernelService
     {
         /// <summary>
