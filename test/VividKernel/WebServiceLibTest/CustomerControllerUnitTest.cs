@@ -70,10 +70,11 @@ public sealed class CustomerControllerUnitTest
     public void SendGetToCustomerWithUnknownIdShouldReturn404()
     {
         // Arrange.
-        ActionResult<Customer> expected = new NotFoundResult();
+        int expected = new NotFoundResult().StatusCode;
 
         // Act.
-        ActionResult<Customer> actual = _controller?.GetCustomer("my-id-not-found").Result;
+        ActionResult<Customer> actualResult = _controller!.GetCustomer("my-id-not-found")!.Result;
+        int? actual = (actualResult.Result as StatusCodeResult)?.StatusCode;
 
         // Assert.
         Assert.AreEqual(expected, actual);

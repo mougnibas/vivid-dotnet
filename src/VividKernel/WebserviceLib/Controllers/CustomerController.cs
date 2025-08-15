@@ -22,6 +22,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         Customer? customerAdded = kernelService.GetCustomer(customer.Id);
 
         // Return the created customer.
+        // TODO Missing coverage here.
         return customerAdded;
     }
 
@@ -51,6 +52,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         }
 
         // Return the customer.
+        // TODO Missing coverage here.
         return customer;
     }
 
