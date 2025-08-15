@@ -28,4 +28,9 @@
     <CoverletOutput>TestResults/coverage.cobertura.xml</CoverletOutput>
   </PropertyGroup>
 
+  <!-- Generate the HTML report after coverage is collected -->
+  <Target Name="PostCoverageReport" AfterTargets="GenerateCoverageResult">
+    <Exec Command="reportgenerator -reports:TestResults/coverage.cobertura.xml -reportTypes:HtmlInline -targetdir:TestResults/" />
+  </Target>
+
 </Project>

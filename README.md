@@ -40,5 +40,6 @@ dotnet build
 
 ```bash
 dotnet test
-reportgenerator -reports:TestResults/coverage.cobertura.xml -reportTypes:HtmlInline -targetdir:TestResults/
 ```
+
+HTML report is located in test/<project>Test/TestResults/
