@@ -28,6 +28,7 @@
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutputFormat>cobertura</CoverletOutputFormat>
     <CoverletOutput>TestResults/coverage.cobertura.xml</CoverletOutput>
+    <Exclude>[VividKernelTest]*</Exclude>
   </PropertyGroup>
 
   <!-- Generate the HTML report after coverage is collected -->
