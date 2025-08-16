@@ -27,7 +27,7 @@ public sealed class CustomerControllerUnitTest
     public void Setup()
     {
         // Initialize the in-memory data access service and kernel service.
-        IDataAccessService dataAccessService = new DataAccessServiceInMemory();
+        DataAccessServiceInMemory dataAccessService = new DataAccessServiceInMemory();
         IKernelService kernelService = new KernelServiceCore(dataAccessService);
 
         // Populate initial data

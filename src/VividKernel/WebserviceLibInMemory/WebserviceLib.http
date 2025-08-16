@@ -35,6 +35,11 @@ Accept: application/json
 
 ###
 
+GET {{WebserviceLib_HostAddress}}/customer/my-id-unknown
+Accept: application/json
+
+###
+
 GET {{WebserviceLib_HostAddress}}/customer
 Accept: application/json
 

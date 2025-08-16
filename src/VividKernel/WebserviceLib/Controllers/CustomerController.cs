@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Vivid.Kernel.Service;
@@ -13,6 +14,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
 {
     [HttpPost]
     [Route("customer")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<Customer> PostCustomer(Customer customer)
     {
         // Add the customer to the kernel service.
@@ -27,6 +29,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
 
     [HttpPost]
     [Route("customer/auto")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<Customer> PostCustomer()
     {
         // Create a new customer.
@@ -41,6 +44,8 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
 
     [HttpGet]
     [Route("customer/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<Customer> GetCustomer(string id)
     {
         // Retrieve the customer from the kernel service.
@@ -65,6 +70,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
 
     [HttpGet]
     [Route("customer")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<Customer[]> GetCustomers()
     {
         // Retrieve all customers from the kernel service.
