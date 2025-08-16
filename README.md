@@ -12,23 +12,23 @@ TODO
 
 ### .NET 9
 
-(.NET 9 download page)[https://dotnet.microsoft.com/en-us/download/dotnet/9.0]
+[.NET 9 download page](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 ### Visual Studio Code
 
-(Visual Studio Code download page)[https://code.visualstudio.com/download]
+[Visual Studio Code download page](https://code.visualstudio.com/download)
 
-### Report Generator
+### Report Generator
 
 ```bash
 dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
 
-##  VS Code
+## VS Code
 
 Open `vivid.code-workspace` with Visual Studio Code.
 
-Install workspace recommanded extensions.
+Install workspace recommended extensions.
 
 ### Build
 
@@ -60,4 +60,4 @@ dotnet build
 dotnet test
 ```
 
-HTML report is located in test/<project>Test/TestResults/
+HTML report is located in `test/TestResults/`.
