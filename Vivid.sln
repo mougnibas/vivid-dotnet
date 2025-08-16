@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebserviceLibInMemoryExe", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebserviceLibInMemory", "src\VividKernel\WebserviceLibInMemoryExe\WebserviceLibInMemory.csproj", "{E2929B0E-7CB7-40D5-A8AD-24467BAD18E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebserviceLibInDatabaseInMemoryExe", "src\VividKernel\WebserviceLibInDatabaseInMemoryExe\WebserviceLibInDatabaseInMemoryExe.csproj", "{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,18 @@ Global
 		{E2929B0E-7CB7-40D5-A8AD-24467BAD18E7}.Release|x64.Build.0 = Release|Any CPU
 		{E2929B0E-7CB7-40D5-A8AD-24467BAD18E7}.Release|x86.ActiveCfg = Release|Any CPU
 		{E2929B0E-7CB7-40D5-A8AD-24467BAD18E7}.Release|x86.Build.0 = Release|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Debug|x64.Build.0 = Debug|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Debug|x86.Build.0 = Debug|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x64.Build.0 = Release|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,5 +177,6 @@ Global
 		{D7960C72-EA34-41C8-B60E-B0DDCD91D7EC} = {A1B160D3-DE5B-5254-8FA1-DB8E36F1627D}
 		{46F716BA-FDE3-F203-2A1F-EC49F37FEB54} = {A1B160D3-DE5B-5254-8FA1-DB8E36F1627D}
 		{E2929B0E-7CB7-40D5-A8AD-24467BAD18E7} = {46F716BA-FDE3-F203-2A1F-EC49F37FEB54}
+		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE} = {A1B160D3-DE5B-5254-8FA1-DB8E36F1627D}
 	EndGlobalSection
 EndGlobal
