@@ -53,6 +53,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         }
 
         // Return the retrieved customer.
+        // TODO branch coverage issue here, probably because of nullable customer (even if checked previously).
         return customer;
     }
 
