@@ -18,12 +18,11 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Add the customer to the kernel service.
         kernelService.AddCustomer(customer);
 
-        // Retrieve the customer by ID.
-        Customer? customerAdded = kernelService.GetCustomer(customer.Id);
+        // Create the result.
+        ActionResult<Customer> result = Ok(customer);
 
-        // Return the created customer.
-        // TODO Missing coverage here.
-        return customerAdded;
+        // Return the given customer.
+        return result;
     }
 
     [HttpPost]
@@ -33,8 +32,11 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Create a new customer.
         Customer customer = kernelService.CreateNewCustomer();
 
+        // Create the result.
+        ActionResult<Customer> result = Ok(customer);
+
         // Return the new customer.
-        return customer;
+        return result;
     }
 
     [HttpGet]
@@ -47,13 +49,18 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Check if the customer was found.
         if (customer == null)
         {
-            // Customer not found.
-            return NotFound();
+            // Create the result.
+            ActionResult<Customer> notFoundResult = NotFound();
+
+            // Return the result.
+            return notFoundResult;
         }
 
-        // Return the customer.
-        // TODO Missing coverage here.
-        return customer;
+        // Create the result.
+        ActionResult<Customer> result = Ok(customer);
+
+        // Return the result.
+        return result;
     }
 
     [HttpGet]
@@ -63,7 +70,10 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Retrieve all customers from the kernel service.
         Customer[] customers = kernelService.GetCustomers();
 
+        // Create the result.
+        ActionResult<Customer[]> result = Ok(customers);
+
         // Return the list of customers.
-        return customers;
+        return result;
     }
 }   
