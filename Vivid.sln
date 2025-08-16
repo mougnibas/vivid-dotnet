@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebserviceLibInMemory", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebserviceLibInDatabaseInMemoryExe", "src\VividKernel\WebserviceLibInDatabaseInMemoryExe\WebserviceLibInDatabaseInMemoryExe.csproj", "{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebserviceLibInDatabasePgsqlExe", "src\VividKernel\WebserviceLibInDatabasePgsqlExe\WebserviceLibInDatabasePgsqlExe.csproj", "{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +159,18 @@ Global
 		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x64.Build.0 = Release|Any CPU
 		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE}.Release|x86.Build.0 = Release|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Debug|x64.Build.0 = Debug|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Debug|x86.Build.0 = Debug|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Release|x64.ActiveCfg = Release|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Release|x64.Build.0 = Release|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Release|x86.ActiveCfg = Release|Any CPU
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +192,6 @@ Global
 		{46F716BA-FDE3-F203-2A1F-EC49F37FEB54} = {A1B160D3-DE5B-5254-8FA1-DB8E36F1627D}
 		{E2929B0E-7CB7-40D5-A8AD-24467BAD18E7} = {46F716BA-FDE3-F203-2A1F-EC49F37FEB54}
 		{AEB22697-CBD4-4C12-B10F-D6BDC07B48CE} = {A1B160D3-DE5B-5254-8FA1-DB8E36F1627D}
+		{94E4A65B-EEE5-4A69-A35C-3E9169224FD2} = {A1B160D3-DE5B-5254-8FA1-DB8E36F1627D}
 	EndGlobalSection
 EndGlobal

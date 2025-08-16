@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Base properties -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Private dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\WebserviceLib\WebserviceLib.csproj" />
+    <ProjectReference Include="..\DataAccessService\VividKernelDataAccessService.csproj" />
+    <ProjectReference Include="..\DataAccessServiceInDatabase\VividKernelDataAccessServiceInDatabase.csproj" />
+    <ProjectReference Include="..\Service\VividKernelService.csproj" />
+    <ProjectReference Include="..\ServiceCore\VividKernelServiceCore.csproj" />
+  </ItemGroup>
+
+  <!-- Public dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <!-- Publish options -->
+  <PropertyGroup>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+</Project>
