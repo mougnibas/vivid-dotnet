@@ -73,7 +73,7 @@ public sealed class CustomerControllerUnitTest
         int expected = new NotFoundResult().StatusCode;
 
         // Act.
-        ActionResult<Customer> actualResult = _controller!.GetCustomer("my-id-not-found")!.Result;
+        ActionResult<Customer> actualResult = _controller!.GetCustomer("my-id-not-found");
         int? actual = (actualResult.Result as StatusCodeResult)?.StatusCode;
 
         // Assert.

@@ -20,11 +20,8 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Add the customer to the kernel service.
         kernelService.AddCustomer(customer);
 
-        // Create the result.
-        ActionResult<Customer> result = Ok(customer);
-
         // Return the given customer.
-        return result;
+        return customer;
     }
 
     [HttpPost]
@@ -35,11 +32,8 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Create a new customer.
         Customer customer = kernelService.CreateNewCustomer();
 
-        // Create the result.
-        ActionResult<Customer> result = Ok(customer);
-
         // Return the new customer.
-        return result;
+        return customer;
     }
 
     [HttpGet]
@@ -54,18 +48,12 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Check if the customer was found.
         if (customer == null)
         {
-            // Create the result.
-            ActionResult<Customer> notFoundResult = NotFound();
-
-            // Return the result.
-            return notFoundResult;
+            // Customer not found.
+            return NotFound();
         }
 
-        // Create the result.
-        ActionResult<Customer> result = Ok(customer);
-
-        // Return the result.
-        return result;
+        // Return the retrieved customer.
+        return customer;
     }
 
     [HttpGet]
@@ -76,10 +64,7 @@ public class CustomerController(IKernelService kernelService) : ControllerBase
         // Retrieve all customers from the kernel service.
         Customer[] customers = kernelService.GetCustomers();
 
-        // Create the result.
-        ActionResult<Customer[]> result = Ok(customers);
-
         // Return the list of customers.
-        return result;
+        return customers;
     }
 }   
