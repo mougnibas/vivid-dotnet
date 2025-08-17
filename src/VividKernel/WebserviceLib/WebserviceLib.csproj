@@ -2,9 +2,9 @@
 
   <!-- Base properties -->
   <PropertyGroup>
+    <OutputType>Library</OutputType> 
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <OutputType>Library</OutputType> 
   </PropertyGroup>
 
   <!-- Private dependencies -->
