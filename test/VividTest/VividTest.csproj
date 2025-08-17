@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Base properties -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Private dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Vivid\Kernel\DataAccess\VividKernelDataAccess.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\DataAccessInDatabase\VividKernelDataAccessInDatabase.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\DataAccessInMemory\VividKernelDataAccessInMemory.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\Service\VividKernelService.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\ServiceCore\VividKernelServiceCore.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\Webservice\VividKernelWebservice.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabaseInMemory\VividKernelWebserviceExeInDatabaseInMemory.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabasePgsql\VividKernelWebserviceExeInDatabasePgsql.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInMemory\VividKernelWebserviceExeInMemory.csproj" />
+  </ItemGroup>
+
+  <!-- Public dependencies -->
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="6.0.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="MSTest" Version="3.6.4" />
+  </ItemGroup>
+
+  <!-- Coverage settings -->
+  <PropertyGroup>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
+    <CoverletOutput>TestResults/coverage.cobertura.xml</CoverletOutput>
+    <Exclude>[VividKernelTest]*</Exclude>
+  </PropertyGroup>
+
+  <!-- Generate the HTML report after coverage is collected -->
+  <Target Name="PostCoverageReport" AfterTargets="GenerateCoverageResult">
+    <Exec Command="reportgenerator -reports:TestResults/coverage.cobertura.xml -reportTypes:HtmlInline -targetdir:TestResults/" />
+  </Target>
+
+</Project>
