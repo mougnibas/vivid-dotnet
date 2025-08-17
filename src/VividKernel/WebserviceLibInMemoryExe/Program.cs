@@ -1,3 +1,10 @@
+// GNU AFFERO GENERAL PUBLIC LICENSE
+// Version 3, 19 November 2007
+//
+// Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+// Everyone is permitted to copy and distribute verbatim copies
+// of this license document, but changing it is not allowed.
+
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +15,7 @@ using Vivid.Kernel.Service;
 using Vivid.Kernel.Service.Core;
 using Vivid.Kernel.WebserviceLib;
 
-namespace Vivid.Kernel.WebserviceLib.InMemory;
+namespace Vivid.Kernel.WebserviceLib.InMemory.Exe;
 
 /// <summary>
 /// The entry point for the application.

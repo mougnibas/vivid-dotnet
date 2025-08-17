@@ -16,7 +16,7 @@
     <ProjectReference Include="..\src\VividKernel\WebserviceLib\WebserviceLib.csproj" />
     <ProjectReference Include="..\src\VividKernel\WebserviceLibInDatabaseInMemoryExe\WebserviceLibInDatabaseInMemoryExe.csproj" />
     <ProjectReference Include="..\src\VividKernel\WebserviceLibInDatabasePgsqlExe\WebserviceLibInDatabasePgsqlExe.csproj" />
-    <ProjectReference Include="..\src\VividKernel\WebserviceLibInMemoryExe\WebserviceLibInMemory.csproj" />
+    <ProjectReference Include="..\src\VividKernel\WebserviceLibInMemoryExe\WebserviceLibInMemoryExe.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->
