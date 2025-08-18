@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ServiceCore\VividKernelServiceCore.csproj" />
     <ProjectReference Include="..\DataAccessInMemory\VividKernelDataAccessInMemory.csproj" />
+    <ProjectReference Include="..\Webservice\VividKernelWebservice.csproj" />
   </ItemGroup>
 
   <!-- Publish options -->
