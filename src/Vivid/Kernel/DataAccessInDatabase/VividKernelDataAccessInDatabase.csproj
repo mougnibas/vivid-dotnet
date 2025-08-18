@@ -5,6 +5,7 @@
     <OutputType>Library</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <RootNamespace>Vivid.Kernel.DataAccessInDatabase</RootNamespace>
   </PropertyGroup>
 
   <!-- Private dependencies -->

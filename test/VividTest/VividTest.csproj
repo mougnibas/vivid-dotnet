@@ -4,6 +4,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <RootNamespace>VividTest</RootNamespace>
   </PropertyGroup>
 
   <!-- Private dependencies -->
