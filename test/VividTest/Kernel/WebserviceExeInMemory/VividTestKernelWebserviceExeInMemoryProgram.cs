@@ -23,14 +23,14 @@ namespace VividTest.Kernel.WebserviceExeInMemory
     [TestClass]
     public sealed class VividTestKernelWebserviceExeInMemoryProgram
     {
-        private WebApplicationFactory<Vivid.Kernel.WebserviceExeInMemory.Program> _factory;
+        private WebApplicationFactory<Program>? _factory;
 
-        private static HttpClient _client;
+        private HttpClient? _client;
 
         [TestInitialize]
         public async Task Setup()
         {
-            _factory = new WebApplicationFactory<Vivid.Kernel.WebserviceExeInMemory.Program>();
+            _factory = new WebApplicationFactory<Program>();
             _client = _factory.CreateClient();
 
             // Populate initial data
@@ -47,8 +47,8 @@ namespace VividTest.Kernel.WebserviceExeInMemory
         [TestCleanup]
         public void TearDown()
         {
-            _client.Dispose();
-            _factory.Dispose();
+            _client?.Dispose();
+            _factory?.Dispose();
         }
 
 
@@ -60,7 +60,7 @@ namespace VividTest.Kernel.WebserviceExeInMemory
             string expected = JsonSerializer.Serialize(customer);
 
             // Act.
-            HttpResponseMessage response = await _client.PostAsync("/customer", new StringContent(expected, System.Text.Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await _client!.PostAsync("/customer", new StringContent(expected, System.Text.Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
             string actual = await response.Content.ReadAsStringAsync();
 
@@ -74,8 +74,9 @@ namespace VividTest.Kernel.WebserviceExeInMemory
             // Arrange.
 
             // Initial count.
-            HttpResponseMessage responseCustomers = await _client.GetAsync("/customer");
-            int initialCount = JsonSerializer.Deserialize<VividKernelCustomer[]>(await responseCustomers.Content.ReadAsStringAsync()).Length;
+            HttpResponseMessage responseCustomers = await _client!.GetAsync("/customer");
+            var customersArray = JsonSerializer.Deserialize<VividKernelCustomer[]>(await responseCustomers.Content.ReadAsStringAsync());
+            int initialCount = customersArray != null ? customersArray.Length : 0;
             int expected = initialCount + 1;
 
             // Add a new one.
@@ -89,7 +90,8 @@ namespace VividTest.Kernel.WebserviceExeInMemory
             // Act.
             // New counter after added a new one.
             HttpResponseMessage responseCustomersAfterAdded = await _client.GetAsync("/customer");
-            int actual = JsonSerializer.Deserialize<VividKernelCustomer[]>(await responseCustomersAfterAdded.Content.ReadAsStringAsync()).Length;
+            var customersArrayAfterAdded = JsonSerializer.Deserialize<VividKernelCustomer[]>(await responseCustomersAfterAdded.Content.ReadAsStringAsync());
+            int actual = customersArrayAfterAdded != null ? customersArrayAfterAdded.Length : 0;
 
             // Assert.
             Assert.AreEqual(expected, actual);
@@ -103,7 +105,7 @@ namespace VividTest.Kernel.WebserviceExeInMemory
             int expected = new NotFoundResult().StatusCode;
 
             // Act.
-            HttpResponseMessage response = await _client.GetAsync("/customer/my-id-not-found");
+            HttpResponseMessage response = await _client!.GetAsync("/customer/my-id-not-found");
             int? actual = (int?)response.StatusCode;
 
             // Assert.
@@ -119,7 +121,7 @@ namespace VividTest.Kernel.WebserviceExeInMemory
             string expected = JsonSerializer.Serialize(customer);
 
             // Act.
-            HttpResponseMessage response = await _client.GetAsync("/customer/my-id");
+            HttpResponseMessage response = await _client!.GetAsync("/customer/my-id");
             response.EnsureSuccessStatusCode();
             string actual = await response.Content.ReadAsStringAsync();
 
