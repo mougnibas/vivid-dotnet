@@ -32,8 +32,11 @@ namespace Vivid.Kernel.WebserviceExeInDatabasePgsql
             // Create a web application builder.
             var builder = WebApplication.CreateSlimBuilder(args);
 
-            // Add controllers support.
-            builder.Services.AddControllers();
+            // Add controllers support, with JSON options.
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
 
             // Add database context.
             // TODO It's time to play with Aspire to provide a PostgreSQL dependency.

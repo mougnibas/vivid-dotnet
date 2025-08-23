@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
 using Vivid.Kernel.Service;
 using Vivid.Kernel.DataAccessInDatabase;
+using System;
 
 namespace VividTest.VividKernel.DataAccessServiceInDatabaseTest
 {
@@ -25,8 +26,9 @@ namespace VividTest.VividKernel.DataAccessServiceInDatabaseTest
         public void SetUp()
         {
             // Setup a DB Context in-memory for testing.
+            string randomDbName = string.Format("KernelDb-{0}", Guid.NewGuid().ToString("N").Substring(0, 16));
             DbContextOptions<VividKernelDbContext> options = new DbContextOptionsBuilder<VividKernelDbContext>()
-                .UseInMemoryDatabase(databaseName: "KernelDb")
+                .UseInMemoryDatabase(databaseName: randomDbName)
                 .Options;
             dbContext = new VividKernelDbContext(options);
 

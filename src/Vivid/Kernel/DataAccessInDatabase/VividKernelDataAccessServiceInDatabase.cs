@@ -23,8 +23,11 @@ namespace Vivid.Kernel.DataAccessInDatabase
             // Create a CustomerModel from customer.
             VividKernelCustomerModel customerModel = new VividKernelCustomerModel(customer.Id, customer.Secret);
 
-            // Add the CustomerModel to the DbContext.
-            dbContext.Customers.Add(customerModel);
+            // Add the CustomerModel to the DbContext (only if not already added).
+            if (dbContext.Customers.Find(customerModel.Id) == null)
+            {
+                dbContext.Customers.Add(customerModel);
+            }
 
             // Save changes to the database.
             dbContext.SaveChanges();
