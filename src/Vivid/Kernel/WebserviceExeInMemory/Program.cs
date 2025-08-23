@@ -31,8 +31,11 @@ namespace Vivid.Kernel.WebserviceExeInMemory
             // Create a web application builder.
             var builder = WebApplication.CreateSlimBuilder(args);
 
-            // Add controllers support.
-            builder.Services.AddControllers();
+            // Add controllers support, with JSON options.
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
 
             // Add application services.
             builder.Services.AddSingleton<IVividKernelDataAccessService, VividKernelDataAccessServiceInMemory>();
