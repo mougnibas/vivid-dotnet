@@ -52,7 +52,7 @@ namespace Vivid.Kernel.WebserviceExeInDatabasePgsql
                 // Get the PostgreSQL data source (previously injected).
                 NpgsqlDataSource dataSource = serviceProvider.GetRequiredService<NpgsqlDataSource>();
 
-                // We explicitely specify the data source for the DbContext.
+                // We explicitly specify the data source for the DbContext.
                 options.UseNpgsql(dataSource);
             });
 
