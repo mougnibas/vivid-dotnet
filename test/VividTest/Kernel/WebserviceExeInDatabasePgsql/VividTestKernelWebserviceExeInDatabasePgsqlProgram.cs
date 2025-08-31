@@ -16,7 +16,6 @@ using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Vivid.Kernel.DataAccessInDatabase;
 using DotNet.Testcontainers.Builders;
-using Microsoft.VisualBasic;
 using DotNet.Testcontainers.Containers;
 using Npgsql;
 
