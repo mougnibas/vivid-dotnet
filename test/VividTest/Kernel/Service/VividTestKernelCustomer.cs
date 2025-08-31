@@ -10,8 +10,8 @@ using Vivid.Kernel.Service;
 
 namespace VividTest.Kernel.Service
 {
-    /// /// <summary>
-    /// /// Unit tests of ``Customer`` struct.
+    /// <summary>
+    /// Unit tests of ``Customer`` struct.
     /// </summary>
     [TestClass]
     public sealed class VividTestKernelCustomer
