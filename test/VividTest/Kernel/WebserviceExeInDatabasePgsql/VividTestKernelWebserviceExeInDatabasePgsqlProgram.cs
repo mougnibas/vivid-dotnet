@@ -15,39 +15,75 @@ using System.Net;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Vivid.Kernel.DataAccessInDatabase;
+using DotNet.Testcontainers.Builders;
+using Microsoft.VisualBasic;
+using DotNet.Testcontainers.Containers;
+using Npgsql;
 
 namespace VividTest.Kernel.WebserviceExeInDatabasePgsql
 {
     [TestClass]
     public sealed class VividTestKernelWebserviceExeInDatabasePgsqlProgram
     {
-        private WebApplicationFactory<Program>? _factory;
+        private static IContainer? _pgsqlInstance;
 
-        private HttpClient? _client;
+        private static WebApplicationFactory<Program>? _factory;
 
-        [TestInitialize]
-        public async Task Setup()
+        private static HttpClient? _client;
+
+        [ClassInitialize]
+        public static async Task SetupOnce(TestContext context)
         {
+            // Pgsql fixed values for instance and datasource.
+            const string pgsqlHost = "localhost";
+            const string pgsqlPort = "5432";
+            const string pgsqlUser = "postgres";
+            const string pgsqlPassword = "mysecretpassword";
+            const string pgsqlDatabase = "kernel_testcontainer";
+
+            // Create the PostgreSQL container instance.
+            _pgsqlInstance = new ContainerBuilder()
+                .WithImage("postgres:latest")
+                .WithEnvironment("POSTGRES_USER", pgsqlUser)
+                .WithEnvironment("POSTGRES_PASSWORD", pgsqlPassword)
+                .WithEnvironment("POSTGRES_HOST_AUTH_METHOD", "trust")
+                .WithPortBinding(pgsqlPort, pgsqlPort)
+                .WithWaitStrategy(Wait.ForUnixContainer().UntilInternalTcpPortIsAvailable(int.Parse(pgsqlPort)))
+                .Build();
+
+            // Start the PostgreSQL container instance.
+            await _pgsqlInstance.StartAsync();
+
+            // We create a pgsql datasource because we will need it at app service configuration step.
+            string connectionString = $"Host={pgsqlHost};Username={pgsqlUser};Password={pgsqlPassword};Database={pgsqlDatabase}";
+            NpgsqlDataSource pgsqlDataSource = new NpgsqlDataSourceBuilder(connectionString).Build();
+
             // Create the factory and client.
+            // Program actually need this datasource to be configured.
+            // It's the job of Aspire orchestration, but in tests, we need to do it manually.
             _factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
             {
                 builder.ConfigureServices(services =>
                 {
-                    // Create and register an NpgsqlDataSource for tests.
-                    // Adjust the connection string to match your test Postgres instance.
-                    var connectionString = "Host=localhost;Username=postgres;Password=mysecretpassword;Database=vivid_test";
-                    var dataSource = new Npgsql.NpgsqlDataSourceBuilder(connectionString).Build();
-                    services.AddSingleton<Npgsql.NpgsqlDataSource>(dataSource);
+                    services.AddSingleton(pgsqlDataSource);
                 });
             });
             _client = _factory.CreateClient();
+        }
 
-            // Populate initial data
-            await _client.PostAsync("/customer",
+        [TestInitialize]
+        public async Task Setup()
+        {
+            // Create the database.
+            VividKernelDbContext dbContext = _factory!.Services.CreateScope().ServiceProvider.GetRequiredService<VividKernelDbContext>();
+            dbContext?.Database.EnsureCreated();
+
+            // Populate initial data.
+            await _client!.PostAsync("/customer",
                 new StringContent(
                     JsonSerializer.Serialize(new VividKernelCustomer { Id = "my-id", Secret = "my-secret" }),
                 System.Text.Encoding.UTF8, "application/json"));
-            await _client.PostAsync("/customer",
+            await _client!.PostAsync("/customer",
                 new StringContent(
                     JsonSerializer.Serialize(new VividKernelCustomer { Id = "my-id-2", Secret = "my-secret-2" }),
                 System.Text.Encoding.UTF8, "application/json"));
@@ -58,10 +94,6 @@ namespace VividTest.Kernel.WebserviceExeInDatabasePgsql
         {
             VividKernelDbContext dbContext = _factory!.Services.CreateScope().ServiceProvider.GetRequiredService<VividKernelDbContext>();
             dbContext?.Database.EnsureDeleted();
-
-            _client?.Dispose();
-            _factory?.Dispose();
-
         }
 
 

@@ -38,13 +38,21 @@ namespace Vivid.Kernel.WebserviceExeInDatabasePgsql
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
 
-            // Add database context.
-            // We register the PostgreSQL data source and configure the DbContext to use it.
-            // Dotnet Aspire orchestration should have done the job for us.
+            // Before adding a DB context, we need to declare an appropriate datasource.
+            // We are assuming .NET Aspire will be used as orchestration, so we are just
+            // declaring it accordingly.
+            // Of course, .NET Aspire need to declare the pgsql database on his own.
+            // If .NET Aspire is not used, this instruction do nothing.
             builder.AddNpgsqlDataSource("KernelDb");
+
+            // Add database context.
+            // Even if the datasource is already declared, we need to declared it as option  with the DbContext.
             builder.Services.AddDbContext<VividKernelDbContext>((serviceProvider, options) =>
             {
-                var dataSource = serviceProvider.GetRequiredService<NpgsqlDataSource>();
+                // Get the PostgreSQL data source (previously injected).
+                NpgsqlDataSource dataSource = serviceProvider.GetRequiredService<NpgsqlDataSource>();
+
+                // We explicitely specify the data source for the DbContext.
                 options.UseNpgsql(dataSource);
             });
 
