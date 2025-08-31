@@ -11,7 +11,7 @@ using System.Globalization;
 namespace Vivid.Kernel.Service
 {
 
-    /// /// <summary>
+    /// <summary>
     /// A representation of a customer.
     /// </summary>
     public struct VividKernelCustomer : IEquatable<VividKernelCustomer>
