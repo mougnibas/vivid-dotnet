@@ -8,10 +8,10 @@
 using System;
 using Aspire.Hosting;
 
-namespace Vivid.Aspire.InMemory
+namespace Vivid.Aspire.InDatabaseInMemory
 {
     /// <summary>
-    /// Entry point for the Vivid Aspire InMemory application.
+    /// Entry point for the Vivid Aspire InDatabaseInMemory application.
     /// </summary>
     public class Program
     {
@@ -25,7 +25,7 @@ namespace Vivid.Aspire.InMemory
             IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
             // Add the kernel project, without any dependencies.
-            builder.AddProject<Projects.VividKernelWebserviceExeInMemory>("kernel");
+            builder.AddProject<Projects.VividKernelWebserviceExeInDatabaseInMemory>("kernel");
 
             // Build and run the application.
             builder.Build().Run();

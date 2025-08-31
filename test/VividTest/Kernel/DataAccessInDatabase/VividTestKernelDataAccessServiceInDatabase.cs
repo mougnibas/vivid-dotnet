@@ -10,7 +10,7 @@ using Vivid.Kernel.Service;
 using Vivid.Kernel.DataAccessInDatabase;
 using System;
 
-namespace VividTest.VividKernel.DataAccessServiceInDatabaseTest
+namespace VividTest.Kernel.DataAccessInDatabase
 {
     /// <summary>
     /// Unit tests of ``KernelDataAccessServiceServiceInDatabase`` class.

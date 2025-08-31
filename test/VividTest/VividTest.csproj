@@ -18,6 +18,9 @@
     <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabaseInMemory\VividKernelWebserviceExeInDatabaseInMemory.csproj" />
     <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabasePgsql\VividKernelWebserviceExeInDatabasePgsql.csproj" />
     <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInMemory\VividKernelWebserviceExeInMemory.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Aspire\InMemory\VividAspireInMemory.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Aspire\InDatabaseInMemory\VividAspireInDatabaseInMemory.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Aspire\InDatabasePgsql\VividAspireInDatabasePgsql.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->
@@ -30,6 +33,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MSTest" Version="3.6.4" />
+    <PackageReference Include="Aspire.Hosting.Testing" Version="9.4.1" />
+
   </ItemGroup>
 
   <!-- Coverage settings -->

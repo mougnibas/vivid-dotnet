@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vivid.Kernel.DataAccessInMemory;
 using Vivid.Kernel.Service;
 
-namespace VividTest.Kernel.DataAccessServiceInMemory
+namespace VividTest.Kernel.DataAccessInMemory
 {
     /// <summary>
     /// Unit tests of ``KernelDataAccessServiceServiceInMemory`` class.

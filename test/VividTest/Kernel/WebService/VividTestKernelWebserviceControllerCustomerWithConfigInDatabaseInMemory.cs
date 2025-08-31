@@ -6,7 +6,9 @@
 
 using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Vivid.Kernel.DataAccessInDatabase;
 using Vivid.Kernel.DataAccessInMemory;
 using Vivid.Kernel.Service;
 using Vivid.Kernel.ServiceCore;
@@ -18,15 +20,24 @@ namespace VividTest.Kernel.Webservice
     /// Unit tests of ``CustomerController`` class.
     /// </summary>
     [TestClass]
-    public sealed class CustomerControllerUnitTest
+    public sealed class VividTestKernelWebserviceControllerCustomerWithConfigInDatabaseInMemory
     {
         private VividKernelWebserviceControllerCustomer? _controller;
+
+        private VividKernelDbContext? dbContext;
 
         [TestInitialize]
         public void Setup()
         {
-            // Initialize the in-memory data access service and kernel service.
-            VividKernelDataAccessServiceInMemory dataAccessService = new VividKernelDataAccessServiceInMemory();
+            // Setup a DB Context in-memory for testing.
+            string randomDbName = string.Format("KernelDb-{0}", Guid.NewGuid().ToString("N").Substring(0, 16));
+            DbContextOptions<VividKernelDbContext> options = new DbContextOptionsBuilder<VividKernelDbContext>()
+                .UseInMemoryDatabase(databaseName: randomDbName)
+                .Options;
+            dbContext = new VividKernelDbContext(options);
+
+            // Initialize the database in-memory data access service and kernel service.
+            VividKernelDataAccessServiceInDatabase dataAccessService = new VividKernelDataAccessServiceInDatabase(dbContext);
             IVividKernelService kernelService = new VividKernelServiceCore(dataAccessService);
 
             // Populate initial data
@@ -35,6 +46,12 @@ namespace VividTest.Kernel.Webservice
 
             // Initialize the customer controller.
             _controller = new VividKernelWebserviceControllerCustomer(kernelService);
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            dbContext?.Database.EnsureDeleted();
         }
 
         [TestMethod]

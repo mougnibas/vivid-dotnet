@@ -17,6 +17,7 @@
 
   <!-- Public dependencies -->
   <ItemGroup>
+    <PackageReference Include="Aspire.Npgsql" Version="9.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
   </ItemGroup>

@@ -5,13 +5,12 @@
 // Everyone is permitted to copy and distribute verbatim copies
 // of this license document, but changing it is not allowed.
 
-using System;
 using Aspire.Hosting;
 
-namespace Vivid.Aspire.InMemory
+namespace Vivid.Aspire.InDatabasePgsql
 {
     /// <summary>
-    /// Entry point for the Vivid Aspire InMemory application.
+    /// Entry point for the Vivid Aspire InDatabasePgsql application.
     /// </summary>
     public class Program
     {
@@ -24,8 +23,14 @@ namespace Vivid.Aspire.InMemory
             // Create the builder.
             IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
-            // Add the kernel project, without any dependencies.
-            builder.AddProject<Projects.VividKernelWebserviceExeInMemory>("kernel");
+            // Declare a postgresql database.
+            var pgsql = builder.AddPostgres("pgsql").WithPgAdmin();
+            var pgsqlDb = pgsql.AddDatabase("KernelDb");
+
+            // Add the kernel project, with pgsql dependency (add wait for the DB to be ready).
+            builder.AddProject<Projects.VividKernelWebserviceExeInDatabasePgsql>("kernel")
+                .WithReference(pgsqlDb)
+                .WaitFor(pgsqlDb);
 
             // Build and run the application.
             builder.Build().Run();
