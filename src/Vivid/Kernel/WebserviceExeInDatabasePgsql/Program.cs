@@ -19,7 +19,7 @@ using Vivid.Kernel.ServiceCore;
 namespace Vivid.Kernel.WebserviceExeInDatabasePgsql
 {
     /// <summary>
-    /// /// The entry point for the application.
+    /// The entry point for the application.
     /// </summary>
     public class Program
     {
