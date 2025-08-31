@@ -13,7 +13,7 @@ using Vivid.Kernel.Service;
 namespace Vivid.Kernel.Webservice
 {
 
-    /// /// <summary>
+    /// <summary>
     /// Initializes a new instance of the <see cref="VividKernelWebserviceControllerCustomer"/> class.
     /// </summary>
     /// <param name="kernelService">The kernel service used for customer operations.</param>
