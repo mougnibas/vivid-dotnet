@@ -16,7 +16,7 @@ using Vivid.Kernel.ServiceCore;
 
 namespace Vivid.Kernel.WebserviceExeInDatabaseInMemory
 {
-    /// /// <summary>
+    /// <summary>
     /// The entry point for the application.
     /// </summary>
     public class Program
