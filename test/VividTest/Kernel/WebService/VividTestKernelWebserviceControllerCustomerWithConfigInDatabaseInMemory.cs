@@ -30,7 +30,7 @@ namespace VividTest.Kernel.Webservice
         public void Setup()
         {
             // Setup a DB Context in-memory for testing.
-            string randomDbName = string.Format("KernelDb-{0}", Guid.NewGuid().ToString("N").Substring(0, 16));
+            string randomDbName = $"KernelDb-{Guid.NewGuid().ToString("N").Substring(0, 16)}";
             DbContextOptions<VividKernelDbContext> options = new DbContextOptionsBuilder<VividKernelDbContext>()
                 .UseInMemoryDatabase(databaseName: randomDbName)
                 .Options;
