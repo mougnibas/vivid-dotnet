@@ -95,6 +95,22 @@ namespace VividTest.Kernel.WebserviceExeInDatabasePgsql
             dbContext?.Database.EnsureDeleted();
         }
 
+        [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
+        public static async Task TearDownOnce()
+        {
+            _client?.Dispose();
+            _client = null;
+
+            _factory?.Dispose();
+            _factory = null;
+
+            if (_pgsqlInstance != null)
+            {
+                await _pgsqlInstance.StopAsync();
+                await _pgsqlInstance.DisposeAsync();
+                _pgsqlInstance = null;
+            }
+        }
 
         [TestMethod]
         public async Task SendPostToCustomerWithJsonShouldReturnThisNewCustomer()
