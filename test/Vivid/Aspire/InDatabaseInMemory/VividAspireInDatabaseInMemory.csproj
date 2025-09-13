@@ -13,7 +13,7 @@
 
   <!-- Private dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\..\Kernel\WebserviceExeInDatabaseInMemory\VividKernelWebserviceExeInDatabaseInMemory.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Vivid\Kernel\WebserviceExeInDatabaseInMemory\VividKernelWebserviceExeInDatabaseInMemory.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->
