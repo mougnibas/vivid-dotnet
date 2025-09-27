@@ -19,6 +19,7 @@ using Vivid.Kernel.DataAccessInDatabase;
 namespace VividTest.Kernel.WebserviceExeInDatabaseInMemory
 {
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestKernelWebserviceExeInDatabaseInMemoryProgram
     {
         private WebApplicationFactory<Program>? _factory;

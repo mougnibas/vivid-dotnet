@@ -15,6 +15,7 @@ namespace VividTest.Kernel.ServiceCore
     /// Unit tests of ``KernelServiceImpl`` class.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit")]
     public sealed class VividTestKernelServiceCore
     {
         private VividKernelServiceCore service = new VividKernelServiceCore(new VividKernelDataAccessServiceInMemory());

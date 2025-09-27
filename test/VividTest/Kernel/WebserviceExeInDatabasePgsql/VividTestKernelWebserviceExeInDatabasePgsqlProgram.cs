@@ -22,6 +22,7 @@ using Npgsql;
 namespace VividTest.Kernel.WebserviceExeInDatabasePgsql
 {
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestKernelWebserviceExeInDatabasePgsqlProgram
     {
         private static IContainer? _pgsqlInstance;

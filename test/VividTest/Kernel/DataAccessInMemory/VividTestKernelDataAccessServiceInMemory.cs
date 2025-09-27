@@ -14,6 +14,7 @@ namespace VividTest.Kernel.DataAccessInMemory
     /// Unit tests of ``KernelDataAccessServiceServiceInMemory`` class.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit")]
     public sealed class VividTestKernelDataAccessServiceInMemory
     {
         private VividKernelDataAccessServiceInMemory service = new VividKernelDataAccessServiceInMemory();

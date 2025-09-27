@@ -16,6 +16,7 @@ namespace VividTest.Kernel.DataAccessInDatabase
     /// Unit tests of ``KernelDataAccessServiceServiceInDatabase`` class.
     /// </summary>
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestKernelDataAccessServiceInDatabase
     {
         private VividKernelDataAccessServiceInDatabase? service = null;

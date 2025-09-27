@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace VividTest.Aspire.InMemory
 {
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestAspireInMemory
     {
 

@@ -14,6 +14,7 @@ namespace VividTest.Kernel.Service
     /// Unit tests of ``Customer`` struct.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit")]
     public sealed class VividTestKernelCustomer
     {
         [DataTestMethod]

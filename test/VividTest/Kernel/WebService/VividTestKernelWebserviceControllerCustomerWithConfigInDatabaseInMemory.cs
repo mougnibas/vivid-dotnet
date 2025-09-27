@@ -20,6 +20,7 @@ namespace VividTest.Kernel.Webservice
     /// Unit tests of ``CustomerController`` class.
     /// </summary>
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestKernelWebserviceControllerCustomerWithConfigInDatabaseInMemory
     {
         private VividKernelWebserviceControllerCustomer? _controller;

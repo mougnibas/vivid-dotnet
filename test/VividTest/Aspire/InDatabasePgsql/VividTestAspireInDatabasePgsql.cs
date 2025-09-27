@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace VividTest.Aspire.InDatabasePgsql
 {
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestAspireInDatabasePgsql
     {
 

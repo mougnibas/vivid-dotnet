@@ -54,7 +54,19 @@ or
 dotnet build
 ```
 
-### Test and coverage
+### Test and coverage (unit only)
+
+```bash
+dotnet test --filter TestCategory=Unit
+```
+
+### Test and coverage (integration only)
+
+```bash
+dotnet test --filter TestCategory=Integration
+```
+
+### Test and coverage (unit and integration)
 
 ```bash
 dotnet test

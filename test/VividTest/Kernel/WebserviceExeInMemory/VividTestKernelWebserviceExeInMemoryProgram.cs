@@ -21,6 +21,7 @@ using System.Text.Json;
 namespace VividTest.Kernel.WebserviceExeInMemory
 {
     [TestClass]
+    [TestCategory("Integration")]
     public sealed class VividTestKernelWebserviceExeInMemoryProgram
     {
         private WebApplicationFactory<Program>? _factory;
