@@ -87,3 +87,31 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build --filter TestCategory=Integration
+
+  # Run all tests.
+  all-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+            dotnet-version: '9.0.x'
+
+      - name: Install ReportGenerator tool
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Clean
+        run: dotnet clean
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build
