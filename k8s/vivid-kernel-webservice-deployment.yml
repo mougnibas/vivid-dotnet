@@ -1,0 +1,43 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vivid-kernel-webservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vivid-kernel-webservice
+  template:
+    metadata:
+      labels:
+        app: vivid-kernel-webservice
+    spec:
+      initContainers:
+      - name: wait-for-pgsql
+        image: postgres:16
+        command: ['sh', '-c', 'until pg_isready -h vivid-kernel-pgsql-service -p 5432 -U sa; do sleep 2; done']
+        env:
+        - name: PGUSER
+          value: "sa"
+      containers:
+      - name: vivid-kernel-webservice
+        image: mougnibas/vivid-kernel-webservice-pgsql:1.0.0-snapshot
+        ports:
+        - containerPort: 5190
+        envFrom:
+        - configMapRef:
+            name: vivid-kernel-webservice-config
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "500m"

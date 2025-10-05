@@ -1,0 +1,13 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vivid-kernel-webservice-config
+data:
+  ConnectionStrings__KernelDb: "Server=vivid-kernel-pgsql-service;Port=5432;Database=KernelDb;Username=sa;Password=your_password;"

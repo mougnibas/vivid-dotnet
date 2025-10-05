@@ -26,6 +26,10 @@
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>
     <PublishTrimmed>false</PublishTrimmed>
+    <PublishProfile>DefaultContainer</PublishProfile>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <ContainerRepository>mougnibas/vivid-kernel-webservice-pgsql</ContainerRepository>
+    <ContainerImageTag>1.0.0-snapshot</ContainerImageTag>
   </PropertyGroup>
 
 </Project>

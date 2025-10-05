@@ -30,6 +30,20 @@ Open `vivid.code-workspace` with Visual Studio Code.
 
 Install workspace recommended extensions.
 
+## Docker Desktop
+
+TODO Link to download page
+
+### Kubernates
+
+"Kubeadm" setup (NOT "kind" setup).
+
+### Ingress in Kubernates
+
+'''bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
+'''
+
 ### Build
 
 `Terminal / Run Task ... / build`

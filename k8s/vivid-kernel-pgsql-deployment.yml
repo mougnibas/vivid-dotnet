@@ -1,0 +1,63 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vivid-kernel-pgsql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vivid-kernel-pgsql
+  template:
+    metadata:
+      labels:
+        app: vivid-kernel-pgsql
+    spec:
+      containers:
+      - name: vivid-kernel-pgsql
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "KernelDb"
+        - name: POSTGRES_USER
+          value: "sa"
+        - name: POSTGRES_PASSWORD
+          value: "your_password"
+        livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - sa
+            initialDelaySeconds: 30
+            periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+              - pg_isready
+              - -U
+              - sa
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        #volumeMounts:
+        #- name: vivid-kernel-pgsql-data
+        #  mountPath: /var/lib/postgresql/data
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits: 
+          memory: "512Mi"
+          cpu: "500m"
+      #volumes:
+      #- name: vivid-kernel-pgsql-data
+      #  persistentVolumeClaim:
+      #    claimName: vivid-kernel-pgsql-volume

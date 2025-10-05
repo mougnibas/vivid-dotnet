@@ -18,6 +18,7 @@ namespace Vivid.Kernel.Webservice
     /// </summary>
     /// <param name="kernelService">The kernel service used for customer operations.</param>
     [ApiController]
+    [Route("kernel/")]
     public class VividKernelWebserviceControllerCustomer(IVividKernelService kernelService) : ControllerBase
     {
         [HttpPost]
