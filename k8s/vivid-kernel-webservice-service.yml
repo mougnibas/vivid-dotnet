@@ -15,4 +15,4 @@ spec:
     app: vivid-kernel-webservice
   ports:
     - port: 5190
-      targetPort: 5190
+      name: vivid-kernel-webservice
