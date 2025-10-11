@@ -26,11 +26,20 @@ spec:
         - containerPort: 5432
         env:
         - name: POSTGRES_DB
-          value: "KernelDb"
+          valueFrom:
+            configMapKeyRef:
+              name: vivid-kernel-config
+              key: POSTGRES_DB
         - name: POSTGRES_USER
-          value: "sa"
+          valueFrom:
+            secretKeyRef:
+              name: vivid-kernel-secret
+              key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
-          value: "your_password"
+          valueFrom:
+            secretKeyRef:
+              name: vivid-kernel-secret
+              key: POSTGRES_PASSWORD
         - name: PGDATA
           value: "/mnt/vivid-kernel-pgsql-data"
         livenessProbe:

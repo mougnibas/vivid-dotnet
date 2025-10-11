@@ -25,15 +25,43 @@ spec:
         command: ['sh', '-c', 'until pg_isready -h vivid-kernel-pgsql-service -p 5432 -U sa; do sleep 2; done']
         env:
         - name: PGUSER
-          value: "sa"
+          valueFrom:
+            secretKeyRef:
+              name: vivid-kernel-secret
+              key: POSTGRES_USER
       containers:
       - name: vivid-kernel-webservice
         image: mougnibas/vivid-kernel-webservice-pgsql:1.0.0-snapshot
         ports:
         - containerPort: 5190
-        envFrom:
-        - configMapRef:
-            name: vivid-kernel-webservice-config
+        env:
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: vivid-kernel-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: vivid-kernel-config
+              key: POSTGRES_PORT
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: vivid-kernel-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: vivid-kernel-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: vivid-kernel-secret
+              key: POSTGRES_PASSWORD
+        - name: ConnectionStrings__KernelDb
+          value: "Server=$(POSTGRES_HOST);Port=$(POSTGRES_PORT);Database=$(POSTGRES_DB);Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD);"
       resources:
         requests:
           memory: "256Mi"
