@@ -10,9 +10,10 @@ kind: Service
 metadata:
   name: vivid-kernel-pgsql-service
 spec:
-  ports:
-    - port: 5432
-      name: postgresql
+  type: ClusterIP
   clusterIP: None
   selector:
     app: vivid-kernel-pgsql
+  ports:
+    - port: 5432
+      name: postgresql
