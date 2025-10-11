@@ -31,6 +31,8 @@ spec:
           value: "sa"
         - name: POSTGRES_PASSWORD
           value: "your_password"
+        - name: PGDATA
+          value: "/mnt/vivid-kernel-pgsql-data"
         livenessProbe:
             exec:
               command:
@@ -47,9 +49,9 @@ spec:
               - sa
           initialDelaySeconds: 5
           periodSeconds: 10
-        #volumeMounts:
-        #- name: vivid-kernel-pgsql-data
-        #  mountPath: /var/lib/postgresql/data
+        volumeMounts:
+        - name: vivid-kernel-pgsql-data
+          mountPath: /mnt/vivid-kernel-pgsql-data
       resources:
         requests:
           memory: "256Mi"
@@ -57,7 +59,7 @@ spec:
         limits: 
           memory: "512Mi"
           cpu: "500m"
-      #volumes:
-      #- name: vivid-kernel-pgsql-data
-      #  persistentVolumeClaim:
-      #    claimName: vivid-kernel-pgsql-volume
+      volumes:
+      - name: vivid-kernel-pgsql-data
+        persistentVolumeClaim:
+          claimName: vivid-kernel-pgsql-volume-claim

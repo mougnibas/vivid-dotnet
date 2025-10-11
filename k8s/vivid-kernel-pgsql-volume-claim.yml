@@ -6,13 +6,12 @@
 # of this license document, but changing it is not allowed.
 
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: vivid-kernel-pgsql-volume
+  name: vivid-kernel-pgsql-volume-claim
 spec:
-  capacity:
-    storage: 500Mi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: /data/vivid-kernel-pgsql-PersistentVolume
+  resources:
+    requests:
+      storage: 500Mi
