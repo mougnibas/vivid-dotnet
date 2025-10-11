@@ -16,3 +16,5 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /data/vivid-kernel-pgsql-PersistentVolume
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: hostpath

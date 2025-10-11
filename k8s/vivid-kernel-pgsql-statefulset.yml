@@ -6,10 +6,11 @@
 # of this license document, but changing it is not allowed.
 
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: vivid-kernel-pgsql-deployment
+  name: vivid-kernel-pgsql-statefulset
 spec:
+  serviceName: "vivid-kernel-pgsql"
   replicas: 1
   selector:
     matchLabels:
@@ -58,7 +59,12 @@ spec:
         limits: 
           memory: "512Mi"
           cpu: "500m"
-      volumes:
-      - name: vivid-kernel-pgsql-data
-        persistentVolumeClaim:
-          claimName: vivid-kernel-pgsql-volume-claim
+  volumeClaimTemplates:
+  - metadata:
+      name: vivid-kernel-pgsql-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 500Mi
+      storageClassName: hostpath
