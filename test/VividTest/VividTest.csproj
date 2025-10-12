@@ -17,10 +17,12 @@
     <ProjectReference Include="..\..\src\Vivid\Kernel\Webservice\VividKernelWebservice.csproj" />
     <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabaseInMemory\VividKernelWebserviceExeInDatabaseInMemory.csproj" />
     <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabasePgsql\VividKernelWebserviceExeInDatabasePgsql.csproj" />
+    <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInDatabaseMariadb\VividKernelWebserviceExeInDatabaseMariadb.csproj" />
     <ProjectReference Include="..\..\src\Vivid\Kernel\WebserviceExeInMemory\VividKernelWebserviceExeInMemory.csproj" />
     <ProjectReference Include="..\Vivid\Aspire\InMemory\VividAspireInMemory.csproj" />
     <ProjectReference Include="..\Vivid\Aspire\InDatabaseInMemory\VividAspireInDatabaseInMemory.csproj" />
     <ProjectReference Include="..\Vivid\Aspire\InDatabasePgsql\VividAspireInDatabasePgsql.csproj" />
+    <ProjectReference Include="..\Vivid\Aspire\InDatabaseMariadb\VividAspireInDatabaseMariadb.csproj" />
   </ItemGroup>
 
   <!-- Public dependencies -->

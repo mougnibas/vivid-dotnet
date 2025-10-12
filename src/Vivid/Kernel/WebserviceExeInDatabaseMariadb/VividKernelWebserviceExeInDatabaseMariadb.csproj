@@ -5,7 +5,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <RootNamespace>Vivid.Kernel.WebserviceExeInDatabasePgsql</RootNamespace>
+    <RootNamespace>Vivid.Kernel.WebserviceExeInDatabaseMariadb</RootNamespace>
   </PropertyGroup>
 
   <!-- Private dependencies -->
@@ -17,8 +17,8 @@
 
   <!-- Public dependencies -->
   <ItemGroup>
-    <PackageReference Include="Aspire.Npgsql" Version="9.4.1" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    <PackageReference Include="Aspire.Pomelo.EntityFrameworkCore.MySql" Version="9.5.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
   </ItemGroup>
 
   <!-- Publish options -->
@@ -27,7 +27,7 @@
     <PublishTrimmed>false</PublishTrimmed>
     <PublishProfile>DefaultContainer</PublishProfile>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <ContainerRepository>mougnibas/vivid-kernel-webservice-pgsql</ContainerRepository>
+    <ContainerRepository>mougnibas/vivid-kernel-webservice-mariadb</ContainerRepository>
     <ContainerImageTag>1.0.0-snapshot</ContainerImageTag>
   </PropertyGroup>
 
