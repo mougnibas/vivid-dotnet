@@ -1,0 +1,46 @@
+@Webservice_HostAddress = http://localhost
+
+POST {{Webservice_HostAddress}}/kernel/customer/
+Content-Type: application/json
+
+{
+    "id": "my-id",
+    "secret": "my-secret"
+}
+
+###
+
+POST {{Webservice_HostAddress}}/kernel/customer/
+Content-Type: application/json
+
+{
+    "id": "my-id-2",
+    "secret": "my-secret-2"
+}
+
+###
+
+POST {{Webservice_HostAddress}}/kernel/customer/auto
+Content-Type: application/json
+
+###
+
+GET {{Webservice_HostAddress}}/kernel/customer/my-id
+Accept: application/json
+
+###
+
+GET {{Webservice_HostAddress}}/kernel/customer/my-id-2
+Accept: application/json
+
+###
+
+GET {{Webservice_HostAddress}}/kernel/customer/my-id-unknown
+Accept: application/json
+
+###
+
+GET {{Webservice_HostAddress}}/kernel/customer
+Accept: application/json
+
+###

@@ -1,6 +1,6 @@
 @Webservice_HostAddress = http://localhost:5190
 
-POST {{Webservice_HostAddress}}/customer
+POST {{Webservice_HostAddress}}/kernel/customer/
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 
-POST {{Webservice_HostAddress}}/customer
+POST {{Webservice_HostAddress}}/kernel/customer/
 Content-Type: application/json
 
 {
@@ -20,27 +20,27 @@ Content-Type: application/json
 
 ###
 
-POST {{Webservice_HostAddress}}/customer/auto
+POST {{Webservice_HostAddress}}/kernel/customer/auto
 Content-Type: application/json
 
 ###
 
-GET {{Webservice_HostAddress}}/customer/my-id
+GET {{Webservice_HostAddress}}/kernel/customer/my-id
 Accept: application/json
 
 ###
 
-GET {{Webservice_HostAddress}}/customer/my-id-2
+GET {{Webservice_HostAddress}}/kernel/customer/my-id-2
 Accept: application/json
 
 ###
 
-GET {{Webservice_HostAddress}}/customer/my-id-unknown
+GET {{Webservice_HostAddress}}/kernel/customer/my-id-unknown
 Accept: application/json
 
 ###
 
-GET {{Webservice_HostAddress}}/customer
+GET {{Webservice_HostAddress}}/kernel/customer/
 Accept: application/json
 
 ###
