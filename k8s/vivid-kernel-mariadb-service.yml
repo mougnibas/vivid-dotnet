@@ -1,0 +1,19 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: vivid-kernel-mariadb-service
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: vivid-kernel-mariadb
+  ports:
+    - port: 3306
+      name: mariadb

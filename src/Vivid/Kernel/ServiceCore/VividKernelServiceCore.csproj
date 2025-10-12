@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Base properties -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType> 
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Vivid.Kernel.ServiceCore</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Private dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\VividKernelDataAccess.csproj" />
+    <ProjectReference Include="..\Service\VividKernelService.csproj" />
+  </ItemGroup>
+
+  <!-- Code style -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>All</AnalysisMode>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+</Project>

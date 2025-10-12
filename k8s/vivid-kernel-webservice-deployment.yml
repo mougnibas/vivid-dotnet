@@ -1,0 +1,45 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vivid-kernel-webservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vivid-kernel-webservice
+  template:
+    metadata:
+      labels:
+        app: vivid-kernel-webservice
+    spec:
+      initContainers:
+      - name: wait-for-mariadb
+        image: busybox:1.36
+        command: ['sh', '-c', 'until nc -z vivid-kernel-mariadb-service 3306; do sleep 2; done']
+      containers:
+      - name: vivid-kernel-webservice
+        image: mougnibas/vivid-kernel-webservice-mariadb:1.0.0-snapshot
+        ports:
+        - containerPort: 5190
+        envFrom:
+        - configMapRef:
+            name: vivid-kernel-config
+        - secretRef:
+            name: vivid-kernel-secret
+        env:
+        - name: ConnectionStrings__KernelDb
+          value: "Server=$(MYSQL_HOST);Port=$(MYSQL_PORT);Database=$(MYSQL_DATABASE);Username=$(MYSQL_USER);Password=$(MYSQL_PASSWORD);AllowUserVariables=True;UseAffectedRows=False;"
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "500m"

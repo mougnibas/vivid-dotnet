@@ -1,0 +1,15 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vivid-kernel-config
+data:
+  MYSQL_HOST: "vivid-kernel-mariadb-service"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "KernelDb"

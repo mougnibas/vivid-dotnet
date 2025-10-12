@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Base properties -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType> 
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Vivid.Kernel.Webservice</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Private dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\Service\VividKernelService.csproj" />
+  </ItemGroup>
+
+</Project>

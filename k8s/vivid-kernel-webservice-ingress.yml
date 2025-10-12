@@ -1,0 +1,24 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vivid-kernel-webservice-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /kernel/customer/
+        pathType: Prefix
+        backend:
+          service:
+            name: vivid-kernel-webservice-service
+            port:
+              number: 5190

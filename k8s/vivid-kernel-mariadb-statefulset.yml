@@ -1,0 +1,65 @@
+# GNU AFFERO GENERAL PUBLIC LICENSE
+# Version 3, 19 November 2007
+#
+# Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vivid-kernel-mariadb-statefulset
+spec:
+  serviceName: "vivid-kernel-mariadb"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vivid-kernel-mariadb
+  template:
+    metadata:
+      labels:
+        app: vivid-kernel-mariadb
+    spec:
+      containers:
+      - name: vivid-kernel-mariadb
+        image: mariadb:12.0.2-noble
+        ports:
+        - containerPort: 3306
+        envFrom:
+        - configMapRef:
+            name: vivid-kernel-config
+        - secretRef:
+            name: vivid-kernel-secret
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 5
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 5
+        volumeMounts:
+        - name: vivid-kernel-mariadb-data
+          mountPath: /var/lib/mysql
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits: 
+          memory: "512Mi"
+          cpu: "500m"
+  volumeClaimTemplates:
+  - metadata:
+      name: vivid-kernel-mariadb-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 500Mi
+      storageClassName: hostpath

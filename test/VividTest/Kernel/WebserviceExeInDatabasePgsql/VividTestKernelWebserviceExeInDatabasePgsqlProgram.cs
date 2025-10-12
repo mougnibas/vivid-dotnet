@@ -1,0 +1,193 @@
+﻿// Version 3, 19 November 2007
+//
+// Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+// Everyone is permitted to copy and distribute verbatim copies
+// of this license document, but changing it is not allowed.
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Vivid.Kernel.Service;
+using Vivid.Kernel.WebserviceExeInDatabasePgsql;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net;
+using System.Text.Json;
+using Microsoft.Extensions.DependencyInjection;
+using Vivid.Kernel.DataAccessInDatabase;
+using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Containers;
+using Npgsql;
+
+namespace VividTest.Kernel.WebserviceExeInDatabasePgsql
+{
+    [TestClass]
+    [TestCategory("Integration")]
+    public sealed class VividTestKernelWebserviceExeInDatabasePgsqlProgram
+    {
+        private static IContainer? _pgsqlInstance;
+
+        private static WebApplicationFactory<Program>? _factory;
+
+        private static HttpClient? _client;
+
+        [ClassInitialize]
+        public static async Task SetupOnce(TestContext context)
+        {
+            // Pgsql fixed values for instance and datasource.
+            const string pgsqlHost = "localhost";
+            const string pgsqlPort = "5432";
+            const string pgsqlUser = "postgres";
+            const string pgsqlPassword = "mysecretpassword";
+            const string pgsqlDatabase = "kernel_testcontainer";
+
+            // Create the PostgreSQL container instance.
+            _pgsqlInstance = new ContainerBuilder()
+                .WithImage("postgres:18.0-bookworm")
+                .WithEnvironment("POSTGRES_USER", pgsqlUser)
+                .WithEnvironment("POSTGRES_PASSWORD", pgsqlPassword)
+                .WithEnvironment("POSTGRES_HOST_AUTH_METHOD", "trust")
+                .WithPortBinding(pgsqlPort, pgsqlPort)
+                .WithWaitStrategy(Wait.ForUnixContainer().UntilInternalTcpPortIsAvailable(int.Parse(pgsqlPort)))
+                .Build();
+
+            // Start the PostgreSQL container instance.
+            await _pgsqlInstance.StartAsync();
+
+            // We create a pgsql datasource because we will need it at app service configuration step.
+            string connectionString = $"Host={pgsqlHost};Username={pgsqlUser};Password={pgsqlPassword};Database={pgsqlDatabase}";
+            NpgsqlDataSource pgsqlDataSource = new NpgsqlDataSourceBuilder(connectionString).Build();
+
+            // Create the factory and client.
+            // Program actually need this datasource to be configured.
+            // It's the job of Aspire orchestration, but in tests, we need to do it manually.
+            _factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.AddSingleton(pgsqlDataSource);
+                });
+            });
+            _client = _factory.CreateClient();
+        }
+
+        [TestInitialize]
+        public async Task Setup()
+        {
+            // Create the database.
+            VividKernelDbContext dbContext = _factory!.Services.CreateScope().ServiceProvider.GetRequiredService<VividKernelDbContext>();
+            dbContext?.Database.EnsureCreated();
+
+            // Populate initial data.
+            await _client!.PostAsync("/kernel/customer",
+                new StringContent(
+                    JsonSerializer.Serialize(new VividKernelCustomer { Id = "my-id", Secret = "my-secret" }),
+                System.Text.Encoding.UTF8, "application/json"));
+            await _client!.PostAsync("/kernel/customer",
+                new StringContent(
+                    JsonSerializer.Serialize(new VividKernelCustomer { Id = "my-id-2", Secret = "my-secret-2" }),
+                System.Text.Encoding.UTF8, "application/json"));
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            VividKernelDbContext dbContext = _factory!.Services.CreateScope().ServiceProvider.GetRequiredService<VividKernelDbContext>();
+            dbContext?.Database.EnsureDeleted();
+        }
+
+        [ClassCleanup(ClassCleanupBehavior.EndOfClass)]
+        public static async Task TearDownOnce()
+        {
+            _client?.Dispose();
+            _client = null;
+
+            _factory?.Dispose();
+            _factory = null;
+
+            if (_pgsqlInstance != null)
+            {
+                await _pgsqlInstance.StopAsync();
+                await _pgsqlInstance.DisposeAsync();
+                _pgsqlInstance = null;
+            }
+        }
+
+        [TestMethod]
+        public async Task SendPostToCustomerWithJsonShouldReturnThisNewCustomer()
+        {
+            // Arrange.
+            VividKernelCustomer customer = new VividKernelCustomer { Id = "my-id-3", Secret = "my-secret-3" };
+            string expected = JsonSerializer.Serialize(customer);
+
+            // Act.
+            HttpResponseMessage response = await _client!.PostAsync("/kernel/customer", new StringContent(expected, System.Text.Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
+            string actual = await response.Content.ReadAsStringAsync();
+
+            // Assert.
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public async Task SendPostToCustomerShouldReturnOneMoreCustomer()
+        {
+            // Arrange.
+
+            // Initial count.
+            HttpResponseMessage responseCustomers = await _client!.GetAsync("/kernel/customer");
+            var customersArray = JsonSerializer.Deserialize<VividKernelCustomer[]>(await responseCustomers.Content.ReadAsStringAsync());
+            int initialCount = customersArray != null ? customersArray.Length : 0;
+            int expected = initialCount + 1;
+
+            // Add a new one.
+            VividKernelCustomer newCustomer = new VividKernelCustomer { Id = "my-id-3", Secret = "my-secret-3" };
+            string newCustomerJson = JsonSerializer.Serialize(newCustomer);
+            _ = await _client.PostAsync(
+                "/kernel/customer",
+                new StringContent(newCustomerJson, System.Text.Encoding.UTF8, "application/json")
+            );
+
+            // Act.
+            // New counter after added a new one.
+            HttpResponseMessage responseCustomersAfterAdded = await _client.GetAsync("/kernel/customer");
+            var customersArrayAfterAdded = JsonSerializer.Deserialize<VividKernelCustomer[]>(await responseCustomersAfterAdded.Content.ReadAsStringAsync());
+            int actual = customersArrayAfterAdded != null ? customersArrayAfterAdded.Length : 0;
+
+            // Assert.
+            Assert.AreEqual(expected, actual);
+        }
+
+        
+        [TestMethod]
+        public async Task SendGetToCustomerWithUnknownIdShouldReturn404()
+        {
+            // Arrange.
+            int expected = new NotFoundResult().StatusCode;
+
+            // Act.
+            HttpResponseMessage response = await _client!.GetAsync("/kernel/customer/my-id-not-found");
+            int? actual = (int?)response.StatusCode;
+
+            // Assert.
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public async Task SendGetToCustomerWithMyIdParameterShouldReturnThatCustomer()
+        {
+
+            // Arrange
+            VividKernelCustomer customer = new VividKernelCustomer { Id = "my-id", Secret = "my-secret" };
+            string expected = JsonSerializer.Serialize(customer);
+
+            // Act.
+            HttpResponseMessage response = await _client!.GetAsync("/kernel/customer/my-id");
+            response.EnsureSuccessStatusCode();
+            string actual = await response.Content.ReadAsStringAsync();
+
+            // Assert.
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}
