@@ -24,13 +24,14 @@ namespace Vivid.Aspire.InDatabaseMariadb
             IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
             // Declare a mysql database.
-            var mysql = builder.AddMySql("mysql").WithPhpMyAdmin();
-            var mysqlDb = mysql.AddDatabase("KernelDb");
+            var mariadb = builder.AddMySql("mariadb").WithImage("mariadb:12.0.2-noble")
+                          .WithPhpMyAdmin(phmMyAdmin => phmMyAdmin.WithImage("phpmyadmin:5.2.3-apache"));
+            var mariadbDb = mariadb.AddDatabase("KernelDb");
 
             // Add the kernel project, with mysql dependency (add wait for the DB to be ready).
             builder.AddProject<Projects.VividKernelWebserviceExeInDatabaseMariadb>("kernel")
-                .WithReference(mysqlDb)
-                .WaitFor(mysqlDb);
+                .WithReference(mariadbDb)
+                .WaitFor(mariadbDb);
 
             // Build and run the application.
             builder.Build().Run();

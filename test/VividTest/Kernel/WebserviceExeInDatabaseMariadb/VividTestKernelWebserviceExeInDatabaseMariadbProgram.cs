@@ -45,7 +45,7 @@ namespace VividTest.Kernel.WebserviceExeInDatabaseMariadb
 
             // Create the MariaDB container instance.
             _mariadbInstance = new ContainerBuilder()
-                .WithImage("mariadb:latest")
+                .WithImage("mariadb:12.0.2-noble")
                 .WithEnvironment("MYSQL_ROOT_PASSWORD", mariadbRootPassword)
                 .WithEnvironment("MYSQL_DATABASE", mariadbDatabase)
                 .WithEnvironment("MYSQL_USER", mariadbUser)

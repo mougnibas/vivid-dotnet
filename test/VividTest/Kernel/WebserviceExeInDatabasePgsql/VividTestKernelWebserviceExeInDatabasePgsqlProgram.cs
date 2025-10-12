@@ -43,7 +43,7 @@ namespace VividTest.Kernel.WebserviceExeInDatabasePgsql
 
             // Create the PostgreSQL container instance.
             _pgsqlInstance = new ContainerBuilder()
-                .WithImage("postgres:latest")
+                .WithImage("postgres:18.0-bookworm")
                 .WithEnvironment("POSTGRES_USER", pgsqlUser)
                 .WithEnvironment("POSTGRES_PASSWORD", pgsqlPassword)
                 .WithEnvironment("POSTGRES_HOST_AUTH_METHOD", "trust")

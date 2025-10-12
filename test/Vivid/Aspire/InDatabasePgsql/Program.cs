@@ -24,7 +24,8 @@ namespace Vivid.Aspire.InDatabasePgsql
             IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
             // Declare a postgresql database.
-            var pgsql = builder.AddPostgres("pgsql").WithPgAdmin();
+            var pgsql = builder.AddPostgres("pgsql").WithImage("postgres:18.0-bookworm")
+                        .WithPgAdmin(pgAdmin => pgAdmin.WithImage("dpage/pgadmin4:9.8.0"));
             var pgsqlDb = pgsql.AddDatabase("KernelDb");
 
             // Add the kernel project, with pgsql dependency (add wait for the DB to be ready).

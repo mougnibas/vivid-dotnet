@@ -43,7 +43,7 @@ namespace Vivid.Kernel.WebserviceExeInDatabaseMariadb
             // Add database context.
             builder.Services.AddDbContextPool<VividKernelDbContext>(dbContextOptionsBuilder => dbContextOptionsBuilder.UseMySql(
                     builder.Configuration.GetConnectionString("KernelDb"),
-                    new MySqlServerVersion(new Version(9, 0, 4)))
+                    new MySqlServerVersion(new Version(12, 0, 2)))
             );
 
             // Add application services.
