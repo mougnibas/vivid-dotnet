@@ -20,18 +20,12 @@ spec:
         app: vivid-kernel-webservice
     spec:
       initContainers:
-      - name: wait-for-pgsql
-        image: postgres:16
-        command: ['sh', '-c', 'until pg_isready -h vivid-kernel-pgsql-service -p 5432 -U sa; do sleep 2; done']
-        env:
-        - name: PGUSER
-          valueFrom:
-            secretKeyRef:
-              name: vivid-kernel-secret
-              key: POSTGRES_USER
+      - name: wait-for-mariadb
+        image: busybox:1.36
+        command: ['sh', '-c', 'until nc -z vivid-kernel-mariadb-service 3306; do sleep 2; done']
       containers:
       - name: vivid-kernel-webservice
-        image: mougnibas/vivid-kernel-webservice-pgsql:1.0.0-snapshot
+        image: mougnibas/vivid-kernel-webservice-mariadb:1.0.0-snapshot
         ports:
         - containerPort: 5190
         envFrom:
@@ -41,7 +35,7 @@ spec:
             name: vivid-kernel-secret
         env:
         - name: ConnectionStrings__KernelDb
-          value: "Server=$(POSTGRES_HOST);Port=$(POSTGRES_PORT);Database=$(POSTGRES_DB);Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD);"
+          value: "Server=$(MYSQL_HOST);Port=$(MYSQL_PORT);Database=$(MYSQL_DATABASE);Username=$(MYSQL_USER);Password=$(MYSQL_PASSWORD);AllowUserVariables=True;UseAffectedRows=False;"
       resources:
         requests:
           memory: "256Mi"

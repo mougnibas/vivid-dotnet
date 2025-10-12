@@ -8,50 +8,45 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: vivid-kernel-pgsql-statefulset
+  name: vivid-kernel-mariadb-statefulset
 spec:
-  serviceName: "vivid-kernel-pgsql"
+  serviceName: "vivid-kernel-mariadb"
   replicas: 1
   selector:
     matchLabels:
-      app: vivid-kernel-pgsql
+      app: vivid-kernel-mariadb
   template:
     metadata:
       labels:
-        app: vivid-kernel-pgsql
+        app: vivid-kernel-mariadb
     spec:
       containers:
-      - name: vivid-kernel-pgsql
-        image: postgres:latest
+      - name: vivid-kernel-mariadb
+        image: mariadb:12.0.2-noble
         ports:
-        - containerPort: 5432
+        - containerPort: 3306
         envFrom:
         - configMapRef:
             name: vivid-kernel-config
         - secretRef:
             name: vivid-kernel-secret
-        env:
-        - name: PGDATA
-          value: "/mnt/vivid-kernel-pgsql-data"
         livenessProbe:
-            exec:
-              command:
-                - pg_isready
-                - -U
-                - sa
-            initialDelaySeconds: 30
-            periodSeconds: 10
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 5
         readinessProbe:
-          exec:
-            command:
-              - pg_isready
-              - -U
-              - sa
+          tcpSocket:
+            port: 3306
           initialDelaySeconds: 5
           periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 5
         volumeMounts:
-        - name: vivid-kernel-pgsql-data
-          mountPath: /mnt/vivid-kernel-pgsql-data
+        - name: vivid-kernel-mariadb-data
+          mountPath: /var/lib/mysql
       resources:
         requests:
           memory: "256Mi"
@@ -61,7 +56,7 @@ spec:
           cpu: "500m"
   volumeClaimTemplates:
   - metadata:
-      name: vivid-kernel-pgsql-data
+      name: vivid-kernel-mariadb-data
     spec:
       accessModes: ["ReadWriteOnce"]
       resources:

@@ -10,6 +10,6 @@ kind: ConfigMap
 metadata:
   name: vivid-kernel-config
 data:
-  POSTGRES_HOST: "vivid-kernel-pgsql-service"
-  POSTGRES_PORT: "5432"
-  POSTGRES_DB: "KernelDb"
+  MYSQL_HOST: "vivid-kernel-mariadb-service"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "KernelDb"
